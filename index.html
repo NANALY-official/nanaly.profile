@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>山本 奈々 | 株式会社NANALY デジタル名刺</title>
+  <meta name="description" content="株式会社NANALY 代表取締役 山本奈々の公式デジタル名刺。プロフィール、セミナー講師、FP・保険代理店、オンライン秘書、美容機器、モデル活動。">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+JP:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 背景の金箔・微粒子キャンバス -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <main class="page-container">
+    <div class="card-wrapper">
+
+      <!-- ================= 1. 上部名刺カード ================= -->
+      <section class="business-card" id="business-card" tabindex="0" role="region" aria-label="名刺">
+        <div class="card-inner">
+          <!-- 左側: ディープティール＆NANALYロゴ -->
+          <div class="card-left">
+            <div class="card-logo-box">
+              <img src="image/nanaly-logo-transparent.png" alt="株式会社NANALY ロゴ" class="card-left-img">
+            </div>
+            <!-- カードの光沢シマーオーバーレイ -->
+            <div class="card-shine"></div>
+          </div>
+
+          <!-- 右側: プロフィールテキスト -->
+          <div class="card-right">
+            <div class="card-gold-divider"></div>
+            <div class="card-right-content">
+              <h1 class="owner-name">山本 奈々</h1>
+              <p class="owner-en">NANA YAMAMOTO</p>
+              <div class="owner-affiliation">
+                <p class="company-name">株式会社NANALY</p>
+                <p class="job-title">代表取締役</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 名刺タップ時のヒントバッジ -->
+        <div class="card-tap-hint">
+          <span>TAP TO SHARE / VIEW QR</span>
+        </div>
+      </section>
+
+      <!-- ================= 2. MENU 区切り ================= -->
+      <div class="menu-divider" aria-hidden="true">
+        <span class="divider-line"></span>
+        <span class="divider-text">M E N U</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <!-- ================= 3. 6つのメニューカード グリッド ================= -->
+      <section class="menu-grid" aria-label="事業メニュー">
+
+        <!-- 1. プロフィール -->
+        <article class="grid-card" data-category="profile" tabindex="0">
+          <div class="card-body">
+            <div class="icon-frame">
+              <img src="image/icon-profile.png" alt="プロフィール" class="menu-icon" loading="lazy">
+            </div>
+            <h2 class="card-title">プロフィール</h2>
+            <div class="card-arrow" aria-hidden="true">
+              <img src="image/arrow.svg" alt="" class="arrow-svg">
+            </div>
+          </div>
+          <div class="card-ripple"></div>
+        </article>
+
+        <!-- 2. セミナー講師 -->
+        <article class="grid-card" data-category="seminar" tabindex="0">
+          <div class="card-body">
+            <div class="icon-frame">
+              <img src="image/icon-seminar.png" alt="セミナー講師" class="menu-icon" loading="lazy">
+            </div>
+            <h2 class="card-title">セミナー講師</h2>
+            <p class="card-sub">
+              <span>お金の授業</span>
+              <span>ビジネスマナー</span>
+            </p>
+            <div class="card-arrow" aria-hidden="true">
+              <img src="image/arrow.svg" alt="" class="arrow-svg">
+            </div>
+          </div>
+          <div class="card-ripple"></div>
+        </article>
+
+        <!-- 3. FP・保険代理店 -->
+        <article class="grid-card" data-category="fp" tabindex="0">
+          <div class="card-body">
+            <div class="icon-frame">
+              <img src="image/icon-fp.png" alt="FP・保険代理店" class="menu-icon" loading="lazy">
+            </div>
+            <h2 class="card-title">FP・保険代理店</h2>
+            <div class="card-arrow" aria-hidden="true">
+              <img src="image/arrow.svg" alt="" class="arrow-svg">
+            </div>
+          </div>
+          <div class="card-ripple"></div>
+        </article>
+
+        <!-- 4. オンライン秘書 -->
+        <article class="grid-card" data-category="secretary" tabindex="0">
+          <div class="card-body">
+            <div class="icon-frame">
+              <img src="image/icon-secretary.png" alt="オンライン秘書" class="menu-icon" loading="lazy">
+            </div>
+            <h2 class="card-title">オンライン秘書</h2>
+            <p class="card-sub">
+              <span>営業代行</span>
+            </p>
+            <div class="card-arrow" aria-hidden="true">
+              <img src="image/arrow.svg" alt="" class="arrow-svg">
+            </div>
+          </div>
+          <div class="card-ripple"></div>
+        </article>
+
+        <!-- 5. 美容機器 -->
+        <article class="grid-card" data-category="beauty" tabindex="0">
+          <div class="card-body">
+            <div class="icon-frame">
+              <img src="image/icon-beauty.png" alt="美容機器" class="menu-icon" loading="lazy">
+            </div>
+            <h2 class="card-title">美容機器</h2>
+            <p class="card-sub">
+              <span>開発・販売</span>
+            </p>
+            <div class="card-arrow" aria-hidden="true">
+              <img src="image/arrow.svg" alt="" class="arrow-svg">
+            </div>
+          </div>
+          <div class="card-ripple"></div>
+        </article>
+
+        <!-- 6. モデル活動 -->
+        <article class="grid-card" data-category="model" tabindex="0">
+          <div class="card-body">
+            <div class="icon-frame">
+              <img src="image/icon-model.png" alt="モデル活動" class="menu-icon" loading="lazy">
+            </div>
+            <h2 class="card-title">モデル活動</h2>
+            <div class="card-arrow" aria-hidden="true">
+              <img src="image/arrow.svg" alt="" class="arrow-svg">
+            </div>
+          </div>
+          <div class="card-ripple"></div>
+        </article>
+
+      </section>
+
+      <!-- ================= 4. ワイドバナーカード ================= -->
+      <section class="banner-section" aria-label="関連法人">
+        <article class="banner-card" data-category="association" tabindex="0">
+          <div class="banner-inner">
+            <div class="banner-icon-frame">
+              <img src="image/icon-association.png" alt="一般社団法人" class="banner-icon" loading="lazy">
+            </div>
+            <div class="banner-gold-divider"></div>
+            <div class="banner-text-content">
+              <p class="banner-sub">一般社団法人</p>
+              <h2 class="banner-title">こどもの未来とお金の研究会(仮)</h2>
+            </div>
+            <div class="banner-arrow" aria-hidden="true">
+              <img src="image/arrow.svg" alt="" class="arrow-svg">
+            </div>
+          </div>
+          <div class="card-ripple"></div>
+        </article>
+      </section>
+
+      <!-- ================= 5. フッターアクションボタン ================= -->
+      <footer class="footer-actions" aria-label="連絡先・SNS">
+        <!-- お問い合わせ -->
+        <a href="#contact" class="action-btn" data-action="contact" role="button">
+          <span class="btn-icon">
+            <img src="image/icon-mail.svg" alt="メール" class="action-svg">
+          </span>
+          <span class="btn-label">お問い合わせ</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <img src="image/arrow.svg" alt="" class="arrow-svg">
+          </span>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="action-btn" data-action="instagram" role="button">
+          <span class="btn-icon">
+            <img src="image/icon-instagram.svg" alt="Instagram" class="action-svg">
+          </span>
+          <span class="btn-label">Instagram</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <img src="image/arrow.svg" alt="" class="arrow-svg">
+          </span>
+        </a>
+
+        <!-- LINE -->
+        <a href="https://line.me" target="_blank" rel="noopener noreferrer" class="action-btn" data-action="line" role="button">
+          <span class="btn-icon">
+            <img src="image/icon-line.svg" alt="LINE" class="action-svg line-svg">
+          </span>
+          <span class="btn-label">LINE</span>
+          <span class="btn-arrow" aria-hidden="true">
+            <img src="image/arrow.svg" alt="" class="arrow-svg">
+          </span>
+        </a>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- ================= 詳細モーダルウィンドウ ================= -->
+  <div class="modal-overlay" id="detail-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="modal-close" aria-label="閉じる">×</button>
+      <div class="modal-header">
+        <div class="modal-icon-wrapper" id="modal-icon"></div>
+        <div class="modal-title-group">
+          <span class="modal-category-tag" id="modal-category">NANALY SERVICE</span>
+          <h3 class="modal-heading" id="modal-title">タイトル</h3>
+        </div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-body" id="modal-description">
+        <!-- JSで動的に詳細テキストを挿入 -->
+      </div>
+      <div class="modal-footer">
+        <button class="modal-action-btn primary" id="modal-primary-btn">詳細を見る</button>
+        <button class="modal-action-btn secondary" id="modal-secondary-btn">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 名刺シェア・QRモーダル ================= -->
+  <div class="modal-overlay" id="share-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-container share-card-modal">
+      <button class="modal-close-btn" id="share-close" aria-label="閉じる">×</button>
+      <div class="share-header">
+        <div class="nanaly-mini-logo">NANALY</div>
+        <h3 class="share-title">デジタル名刺の共有</h3>
+        <p class="share-subtitle">山本 奈々 | 代表取締役</p>
+      </div>
+      <div class="qr-container">
+        <!-- SVG生成QRコードプレースホルダー -->
+        <div class="qr-code-box" id="qr-box">
+          <svg viewBox="0 0 120 120" class="qr-svg" aria-label="QR Code">
+            <rect width="120" height="120" fill="#ffffff" rx="8"/>
+            <!-- 四隅のファインダーパターン -->
+            <path d="M12 12 h32 v32 h-32 z M20 20 v16 h16 v-16 z" fill="#063b49"/>
+            <rect x="24" y="24" width="8" height="8" fill="#c3944d"/>
+            <path d="M76 12 h32 v32 h-32 z M84 20 v16 h16 v-16 z" fill="#063b49"/>
+            <rect x="88" y="24" width="8" height="8" fill="#c3944d"/>
+            <path d="M12 76 h32 v32 h-32 z M20 84 v16 h16 v-16 z" fill="#063b49"/>
+            <rect x="24" y="88" width="8" height="8" fill="#c3944d"/>
+            <!-- 幾何学模様 -->
+            <path d="M52 16 h8 v8 h-8 z M64 24 h8 v16 h-8 z M52 36 h12 v8 h-12 z M16 52 h8 v16 h-8 z M32 52 h24 v8 h-24 z M64 52 h16 v8 h-16 z M88 52 h8 v8 h-8 z M100 52 h8 v16 h-8 z M52 68 h16 v16 h-16 z M76 68 h12 v8 h-12 z M96 68 h12 v8 h-12 z M36 76 h12 v8 h-12 z M76 84 h8 v16 h-8 z M92 84 h16 v8 h-16 z M52 92 h16 v16 h-16 z M76 104 h24 v8 h-24 z" fill="#063b49"/>
+          </svg>
+        </div>
+        <p class="qr-caption">スマートフォンで読み取って名刺を保存できます</p>
+      </div>
+      <div class="share-actions">
+        <button class="share-copy-btn" id="copy-url-btn">
+          <span class="copy-icon">🔗</span>
+          <span class="copy-text">URLをコピー</span>
+        </button>
+      </div>
+      <div class="copy-toast" id="copy-toast">URLをクリップボードにコピーしました</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

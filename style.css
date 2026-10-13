@@ -1,0 +1,1164 @@
+/* ==========================================================================
+   NANALY デジタル名刺 - スタイルシート
+   画像デザインの忠実な再現 & 上品なマイクロインタラクション
+   ========================================================================== */
+
+/* --- CSS変数（デザイントークン） --- */
+:root {
+  --color-deep-teal: #063b49;        /* 深い青緑（プライマリ） */
+  --color-deep-teal-dark: #042933;   /* より濃い青緑（影用） */
+  --color-teal-glow: rgba(6, 59, 73, 0.12);
+  
+  --color-gold: #c3944d;             /* ゴールドアクセント */
+  --color-gold-light: #dfbc7a;       /* 明るいゴールド */
+  --color-gold-dark: #a07432;        /* 濃いゴールド */
+  --color-gold-glow: rgba(195, 148, 77, 0.25);
+
+  --color-card-border-blue: #278ad2; /* メニューカードのスカイブルー枠線 */
+  
+  --color-bg-base: #fbf9f5;          /* 全体背景（高級感ある和紙調オフホワイト） */
+  --color-card-white: #ffffff;       /* カード背景 */
+  --color-text-dark: #063b49;        /* 主要テキスト（深い青緑） */
+  --color-text-sub: #174d5b;         /* サブテキスト */
+  --color-text-gold: #c3944d;        /* ゴールドテキスト */
+
+  /* フォント定義 */
+  --font-mincho: 'Shippori Mincho', 'Noto Serif JP', 'Yu Mincho', serif;
+  --font-serif-en: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+  /* 影 */
+  --shadow-card-subtle: 0 4px 20px rgba(6, 59, 73, 0.05);
+  --shadow-card-hover: 0 10px 28px rgba(6, 59, 73, 0.12), 0 2px 6px rgba(195, 148, 77, 0.15);
+  --shadow-gold-hover: 0 8px 24px rgba(195, 148, 77, 0.22);
+}
+
+/* --- リセット & 基本設定 --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-dark);
+  font-family: var(--font-mincho);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 16px 60px;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* --- 背景キャンバス（金箔・微粒子アニメーション） --- */
+#ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+}
+
+/* --- 全体コンテナ --- */
+.page-container {
+  width: 100%;
+  max-width: 520px;
+  position: relative;
+  z-index: 1;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   1. 上部名刺カード
+   ========================================================================== */
+.business-card {
+  position: relative;
+  background: #ffffff;
+  border: 1.5px solid var(--color-gold);
+  border-radius: 0; /* ゴールドの囲いの角丸を完全になくし直角に */
+  padding: 0; /* 緑のロゴ周りの白い隙間を完全になくす */
+  box-shadow: 0 4px 18px rgba(6, 59, 73, 0.06);
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.3s ease;
+  user-select: none;
+  perspective: 1000px;
+}
+
+.business-card:hover {
+  transform: translateY(-3px) scale(1.005);
+  box-shadow: var(--shadow-gold-hover);
+  border-color: var(--color-gold-light);
+}
+
+.business-card:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+.card-inner {
+  display: flex;
+  min-height: 226px;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+}
+
+/* 名刺左側: 尖った直角の四角形（背景は完全に均一な単一面のディープティール） */
+.card-left {
+  flex: 0 0 45.5%;
+  background-color: var(--color-deep-teal);
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-logo-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 12px;
+  z-index: 2;
+}
+
+.card-left-img {
+  max-width: 86%;
+  max-height: 86%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 0;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+  transition: transform 0.4s ease;
+}
+
+.business-card:hover .card-left-img {
+  transform: scale(1.03);
+}
+
+/* 光沢シマー効果 */
+.card-shine {
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.15) 45%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0.15) 55%,
+    transparent 60%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.business-card:hover .card-shine {
+  opacity: 1;
+  animation: shineSweep 1.6s ease-in-out infinite;
+}
+
+@keyframes shineSweep {
+  0% { transform: translateY(-100%) rotate(25deg); }
+  100% { transform: translateY(100%) rotate(25deg); }
+}
+
+/* 名刺右側: テキスト情報 */
+.card-right {
+  flex: 1;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 20px 20px 20px 28px;
+}
+
+/* 縦のゴールド仕切り線 */
+.card-gold-divider {
+  position: absolute;
+  left: 14px;
+  top: 14%;
+  bottom: 14%;
+  width: 1.5px;
+  background: var(--color-gold);
+}
+
+.card-right-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.owner-name {
+  font-family: var(--font-mincho);
+  font-size: 2.35rem;
+  font-weight: 600;
+  color: var(--color-deep-teal);
+  letter-spacing: 0.18em;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+.owner-en {
+  font-family: var(--font-serif-en);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  letter-spacing: 0.32em;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.owner-affiliation {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.company-name {
+  font-family: var(--font-mincho);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--color-deep-teal);
+  letter-spacing: 0.05em;
+}
+
+.job-title {
+  font-family: var(--font-mincho);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--color-deep-teal);
+  letter-spacing: 0.05em;
+}
+
+/* 名刺タップヒント */
+.card-tap-hint {
+  position: absolute;
+  bottom: -10px;
+  right: 16px;
+  background: var(--color-deep-teal);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: all 0.25s ease;
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.business-card:hover .card-tap-hint {
+  opacity: 0.9;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   2. MENU 区切り線
+   ========================================================================== */
+.menu-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 8px 0 2px;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1.2px;
+  background: var(--color-gold);
+}
+
+.divider-text {
+  font-family: var(--font-serif-en);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-deep-teal);
+  letter-spacing: 0.38em;
+  text-indent: 0.38em;
+}
+
+/* ==========================================================================
+   3. メニューグリッド（3列×2行）
+   ========================================================================== */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.grid-card {
+  position: relative;
+  background: #ffffff;
+  border: 1.6px solid var(--color-card-border-blue);
+  border-radius: 12px;
+  aspect-ratio: 1 / 1.05;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  padding: 12px 6px;
+  box-shadow: 0 3px 12px rgba(39, 138, 210, 0.06);
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.28s ease,
+              background-color 0.28s ease;
+  user-select: none;
+  overflow: hidden;
+}
+
+.grid-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(39, 138, 210, 0.18), 0 2px 6px rgba(6, 59, 73, 0.08);
+  border-color: #1a7ec7;
+  background-color: #fcfeff;
+}
+
+.grid-card:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.grid-card:focus-visible {
+  outline: 2px solid var(--color-card-border-blue);
+  outline-offset: 2px;
+}
+
+.card-body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  z-index: 2;
+}
+
+/* 円形アイコン */
+.icon-frame {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-top: 2px;
+}
+
+.grid-card:hover .icon-frame {
+  transform: scale(1.08) rotate(3deg);
+}
+
+.menu-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 50%;
+}
+
+/* タイトル & サブ */
+.card-title {
+  font-family: var(--font-mincho);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-deep-teal);
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  margin-top: 6px;
+  transition: color 0.25s ease;
+}
+
+.grid-card:hover .card-title {
+  color: #0b5063;
+}
+
+.card-sub {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  font-family: var(--font-mincho);
+  font-size: 0.68rem;
+  color: var(--color-deep-teal);
+  line-height: 1.2;
+  margin-top: 2px;
+  opacity: 0.88;
+}
+
+/* 矢印 */
+.card-arrow {
+  width: 16px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+  transition: transform 0.3s ease;
+}
+
+.grid-card:hover .card-arrow {
+  transform: translateX(4px);
+}
+
+.arrow-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* リップルエフェクト */
+.card-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(195, 148, 77, 0.25) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: width 0.6s ease-out, height 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+.grid-card:active .card-ripple,
+.banner-card:active .card-ripple {
+  width: 250px;
+  height: 250px;
+  opacity: 1;
+  transition: 0s;
+}
+
+.touch-ripple {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(195, 148, 77, 0.45) 0%, rgba(39, 138, 210, 0.15) 60%, transparent 100%);
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+  animation: touchRippleAnim 0.6s ease-out forwards;
+}
+
+@keyframes touchRippleAnim {
+  to {
+    transform: translate(-50%, -50%) scale(15);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   4. ワイドバナーカード（一般社団法人）
+   ========================================================================== */
+.banner-section {
+  width: 100%;
+}
+
+.banner-card {
+  position: relative;
+  background: #ffffff;
+  border: 1.6px solid var(--color-gold);
+  border-radius: 12px;
+  cursor: pointer;
+  outline: none;
+  padding: 12px 18px;
+  box-shadow: 0 4px 16px rgba(6, 59, 73, 0.05);
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.28s ease;
+  user-select: none;
+  overflow: hidden;
+}
+
+.banner-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-gold-hover);
+  border-color: var(--color-gold-light);
+}
+
+.banner-card:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.banner-card:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.banner-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 2;
+  position: relative;
+}
+
+.banner-icon-frame {
+  flex: 0 0 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s ease;
+}
+
+.banner-card:hover .banner-icon-frame {
+  transform: scale(1.08) rotate(4deg);
+}
+
+.banner-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.banner-gold-divider {
+  width: 1.5px;
+  height: 48px;
+  background: var(--color-gold);
+  flex-shrink: 0;
+}
+
+.banner-text-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.banner-sub {
+  font-family: var(--font-mincho);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--color-deep-teal);
+  letter-spacing: 0.06em;
+}
+
+.banner-title {
+  font-family: var(--font-mincho);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-deep-teal);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.banner-arrow {
+  width: 18px;
+  height: 14px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.banner-card:hover .banner-arrow {
+  transform: translateX(5px);
+}
+
+/* ==========================================================================
+   5. フッターアクションボタン（3列）
+   ========================================================================== */
+.footer-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1.6px solid var(--color-card-border-blue);
+  border-radius: 8px;
+  padding: 10px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(39, 138, 210, 0.05);
+  transition: transform 0.25s ease,
+              box-shadow 0.25s ease,
+              border-color 0.25s ease,
+              background-color 0.25s ease;
+  user-select: none;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(39, 138, 210, 0.16);
+  border-color: #1a7ec7;
+  background-color: #f7fbfe;
+}
+
+.action-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.action-btn:focus-visible {
+  outline: 2px solid var(--color-card-border-blue);
+  outline-offset: 2px;
+}
+
+.btn-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.action-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.btn-label {
+  font-family: var(--font-mincho);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-deep-teal);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.btn-arrow {
+  width: 14px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.action-btn:hover .btn-arrow {
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   6. モーダルウィンドウ
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 41, 51, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              visibility 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  border: 1.6px solid var(--color-gold);
+  border-radius: 16px;
+  padding: 28px 24px 24px;
+  position: relative;
+  box-shadow: 0 20px 48px rgba(4, 41, 51, 0.25), 0 0 24px rgba(195, 148, 77, 0.2);
+  transform: scale(0.92) translateY(12px);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.active .modal-container {
+  transform: scale(1) translateY(0);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f3f6f8;
+  border: none;
+  font-size: 1.3rem;
+  color: var(--color-deep-teal);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: var(--color-deep-teal);
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.modal-icon-wrapper {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.modal-icon-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.modal-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modal-category-tag {
+  font-family: var(--font-serif-en);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--color-gold);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.modal-heading {
+  font-family: var(--font-mincho);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-deep-teal);
+}
+
+.modal-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-gold), rgba(195, 148, 77, 0.15));
+  margin-bottom: 18px;
+}
+
+.modal-body {
+  font-family: var(--font-mincho);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #1a4350;
+  margin-bottom: 24px;
+}
+
+.modal-body p {
+  margin-bottom: 12px;
+}
+
+.modal-body ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 10px 0;
+}
+
+.modal-body li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.modal-body li::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  color: var(--color-gold);
+  font-size: 0.65rem;
+  top: 1px;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-action-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: var(--font-mincho);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.modal-action-btn.primary {
+  background: var(--color-deep-teal);
+  color: #ffffff;
+  border: 1.5px solid var(--color-deep-teal);
+}
+
+.modal-action-btn.primary:hover {
+  background: #095266;
+  box-shadow: 0 4px 12px rgba(6, 59, 73, 0.25);
+}
+
+.modal-action-btn.secondary {
+  background: #ffffff;
+  color: var(--color-deep-teal);
+  border: 1.5px solid #d0dee5;
+}
+
+.modal-action-btn.secondary:hover {
+  background: #f4f8fa;
+  border-color: var(--color-deep-teal);
+}
+
+/* ==========================================================================
+   7. 名刺共有モーダル
+   ========================================================================== */
+.share-card-modal {
+  text-align: center;
+}
+
+.share-header {
+  margin-bottom: 20px;
+}
+
+.nanaly-mini-logo {
+  font-family: var(--font-serif-en);
+  font-size: 1.1rem;
+  letter-spacing: 0.35em;
+  color: var(--color-gold);
+  margin-bottom: 6px;
+}
+
+.share-title {
+  font-family: var(--font-mincho);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-deep-teal);
+  margin-bottom: 4px;
+}
+
+.share-subtitle {
+  font-size: 0.88rem;
+  color: #4a6d79;
+}
+
+.qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0 22px;
+}
+
+.qr-code-box {
+  width: 140px;
+  height: 140px;
+  padding: 10px;
+  background: #ffffff;
+  border: 1.5px solid var(--color-gold);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(6, 59, 73, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.qr-caption {
+  font-size: 0.78rem;
+  color: #63828c;
+}
+
+.share-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.share-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: var(--color-deep-teal);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-mincho);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(6, 59, 73, 0.18);
+}
+
+.share-copy-btn:hover {
+  background: #095266;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(6, 59, 73, 0.26);
+}
+
+.copy-toast {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--color-gold);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+}
+
+.copy-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   8. アニメーション（ロード時のスタッガー登場）
+   ========================================================================== */
+.fade-in-ready .business-card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cardEntrance 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.15s;
+}
+
+.fade-in-ready .menu-divider {
+  opacity: 0;
+  transform: scaleX(0.85);
+  animation: dividerEntrance 0.6s ease forwards 0.4s;
+}
+
+.fade-in-ready .grid-card {
+  opacity: 0;
+  transform: translateY(18px) scale(0.96);
+  animation: itemEntrance 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.fade-in-ready .grid-card:nth-child(1) { animation-delay: 0.45s; }
+.fade-in-ready .grid-card:nth-child(2) { animation-delay: 0.52s; }
+.fade-in-ready .grid-card:nth-child(3) { animation-delay: 0.59s; }
+.fade-in-ready .grid-card:nth-child(4) { animation-delay: 0.66s; }
+.fade-in-ready .grid-card:nth-child(5) { animation-delay: 0.73s; }
+.fade-in-ready .grid-card:nth-child(6) { animation-delay: 0.80s; }
+
+.fade-in-ready .banner-card {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: itemEntrance 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.88s;
+}
+
+.fade-in-ready .footer-actions {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: itemEntrance 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.95s;
+}
+
+@keyframes cardEntrance {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dividerEntrance {
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes itemEntrance {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   9. レスポンシブ対応（スマホ〜大画面）
+   ========================================================================== */
+@media (max-width: 480px) {
+  body {
+    padding: 16px 12px 40px;
+  }
+
+  .card-inner {
+    min-height: 190px;
+  }
+
+  .card-left {
+    flex: 0 0 45%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .card-logo-box {
+    padding: 10px 6px;
+  }
+
+  .nanaly-symbol {
+    width: 78px;
+    height: 78px;
+  }
+
+  .nanaly-brand-name {
+    font-size: 1.05rem;
+    letter-spacing: 0.36em;
+  }
+
+  .card-right {
+    padding: 18px 14px 18px 18px;
+  }
+
+  .owner-name {
+    font-size: 1.75rem;
+  }
+
+  .owner-en {
+    font-size: 0.72rem;
+    margin-bottom: 16px;
+  }
+
+  .company-name, .job-title {
+    font-size: 0.92rem;
+  }
+
+  .menu-grid {
+    gap: 8px;
+  }
+
+  .grid-card {
+    padding: 10px 4px;
+    border-radius: 10px;
+  }
+
+  .icon-frame {
+    width: 58px;
+    height: 58px;
+  }
+
+  .card-title {
+    font-size: 0.85rem;
+  }
+
+  .card-sub {
+    font-size: 0.62rem;
+  }
+
+  .banner-card {
+    padding: 10px 14px;
+  }
+
+  .banner-icon-frame {
+    flex: 0 0 46px;
+    height: 46px;
+  }
+
+  .banner-sub {
+    font-size: 0.82rem;
+  }
+
+  .banner-title {
+    font-size: 0.92rem;
+  }
+
+  .footer-actions {
+    gap: 8px;
+  }
+
+  .action-btn {
+    padding: 8px 4px;
+    gap: 4px;
+  }
+
+  .btn-icon {
+    width: 17px;
+    height: 17px;
+  }
+
+  .btn-label {
+    font-size: 0.78rem;
+  }
+
+  .btn-arrow {
+    width: 11px;
+  }
+}
