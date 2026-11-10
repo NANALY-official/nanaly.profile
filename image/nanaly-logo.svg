@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 340" width="100%" height="100%">
+  <defs>
+    <linearGradient id="gold3D" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fae5bd"/>
+      <stop offset="25%" stop-color="#e7c688"/>
+      <stop offset="50%" stop-color="#cf9f54"/>
+      <stop offset="75%" stop-color="#dfbb7a"/>
+      <stop offset="100%" stop-color="#b5843b"/>
+    </linearGradient>
+    <filter id="embossShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0.5" dy="1.5" stdDeviation="1.2" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  
+  <!-- Nマーク (幾何学シンボル) -->
+  <g filter="url(#embossShadow)">
+    <rect x="86" y="42" width="7" height="126" fill="url(#gold3D)"/>
+    <rect x="226" y="42" width="7" height="126" fill="url(#gold3D)"/>
+    <polygon points="86,42 96,42 233,168 223,168" fill="url(#gold3D)"/>
+    <polygon points="108,42 118,42 233,142 223,142" fill="url(#gold3D)"/>
+  </g>
+
+  <!-- NANALY 文字 (下部) -->
+  <g filter="url(#embossShadow)" fill="url(#gold3D)">
+    <!-- N 1 -->
+    <path d="M22,238 L27,238 L27,272 L45,238 L50,238 L50,272 L45,272 L45,245 L27,272 L22,272 Z"/>
+    
+    <!-- A 1 -->
+    <path d="M68,272 L86,238 L104,272 L97,272 L86,249 L75,272 Z"/>
+    <polygon points="86,260 81,270 91,270" fill="url(#gold3D)"/>
+
+    <!-- N 2 -->
+    <path d="M122,238 L127,238 L127,272 L145,238 L150,238 L150,272 L145,272 L145,245 L127,272 L122,272 Z"/>
+
+    <!-- A 2 -->
+    <path d="M168,272 L186,238 L204,272 L197,272 L186,249 L175,272 Z"/>
+    <polygon points="186,260 181,270 191,270" fill="url(#gold3D)"/>
+
+    <!-- L -->
+    <path d="M222,238 L227,238 L227,267 L248,267 L248,272 L222,272 Z"/>
+
+    <!-- Y -->
+    <path d="M266,238 L283,257 L300,238 L306,238 L286,260 L286,272 L280,272 L280,260 L260,238 Z"/>
+  </g>
+</svg>

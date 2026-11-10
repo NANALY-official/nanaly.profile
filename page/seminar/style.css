@@ -1,0 +1,940 @@
+/* ==========================================================================
+   NANALY Seminar & Lesson Page Stylesheet
+   Exact replication of the 2-column Seminar & Lesson sheet (PC: 2 columns, Mobile: stacked)
+   ========================================================================== */
+
+:root {
+  --bg-page: #e6e3dd;
+  --bg-col-left: #fcf8f7;
+  --bg-col-right: #fbf7f6;
+  --navy-dark: #132235;
+  --text-main: #1b2430;
+  --text-sub: #2d343d;
+  --gold-accent: #c5a67c;
+  --gold-line: #cbb38f;
+  --divider-line: #ebe5df;
+  --card-beige: #f8f0e6;
+  --font-serif: "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --font-sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  --font-en: "Cormorant Garamond", Georgia, serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 12px 40px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   Unified Bottom Back-to-TOP Navigation Button
+   -------------------------------------------------------------------------- */
+.bottom-top-nav {
+  width: 100%;
+  max-width: 960px;
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+}
+
+.top-return-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 220px;
+  padding: 12px 32px;
+  background-color: #ffffff;
+  color: #1d2b3a;
+  text-decoration: none;
+  font-family: var(--font-serif);
+  font-size: 0.94rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  border: 1.5px solid #c5a67c;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(29, 43, 58, 0.08);
+  transition: all 0.25s ease;
+}
+
+.top-return-arrow {
+  color: #b4905e;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.top-return-btn:hover {
+  background-color: #1d2b3a;
+  color: #f5f3ef;
+  border-color: #1d2b3a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(29, 43, 58, 0.16);
+}
+
+.top-return-btn:hover .top-return-arrow {
+  color: #dfbc7a;
+  transform: translateX(-4px);
+}
+
+/* --------------------------------------------------------------------------
+   Main Two-Column Sheet Container (PC Web View)
+   -------------------------------------------------------------------------- */
+.seminar-sheet {
+  width: 100%;
+  max-width: 960px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #ffffff;
+  gap: 4px; /* Crisp white center vertical divider line */
+  box-shadow: 0 12px 36px rgba(15, 23, 30, 0.14);
+  position: relative;
+  overflow: hidden;
+}
+
+.col {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.col-left {
+  background-color: var(--bg-col-left);
+  padding: 24px 26px 18px;
+}
+
+.col-right {
+  background-color: var(--bg-col-right);
+  padding: 24px 26px 34px;
+}
+
+/* --------------------------------------------------------------------------
+   Corner Decorative Ribbons
+   -------------------------------------------------------------------------- */
+.corner-decor {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Top-left navy & gold diagonal ribbon */
+.corner-top-left {
+  top: 0;
+  left: 0;
+  width: 112px;
+  height: 112px;
+  background: linear-gradient(
+    130deg,
+    #354660 0%,
+    #354660 28%,
+    #ecc29c 28.5%,
+    #ecc29c 36.5%,
+    transparent 37%
+  );
+}
+
+/* Bottom-right of left column */
+.corner-bottom-right-leftcol {
+  bottom: 0;
+  right: 0;
+  width: 120px;
+  height: 62px;
+  background: linear-gradient(
+    -26deg,
+    #354660 0%,
+    #354660 35%,
+    #ecc29c 35.5%,
+    #ecc29c 47%,
+    transparent 47.5%
+  );
+}
+
+/* Bottom-right of right column */
+.corner-bottom-right-rightcol {
+  bottom: 0;
+  right: 0;
+  width: 145px;
+  height: 68px;
+  background: linear-gradient(
+    -24deg,
+    #354660 0%,
+    #354660 34%,
+    #ecc29c 34.5%,
+    #ecc29c 46%,
+    transparent 46.5%
+  );
+}
+
+/* --------------------------------------------------------------------------
+   Left Column: Header (NANALY / セミナー・講師活動 / Seminar & Lesson)
+   -------------------------------------------------------------------------- */
+.seminar-header {
+  text-align: center;
+  position: relative;
+  z-index: 3;
+  margin-bottom: 12px;
+}
+
+.brand-en {
+  font-family: var(--font-en);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  color: var(--navy-dark);
+  padding-left: 0.28em;
+  margin-bottom: 6px;
+}
+
+.main-title {
+  font-family: var(--font-serif);
+  font-size: 2.38rem;
+  font-weight: 700;
+  color: var(--navy-dark);
+  line-height: 1.24;
+  letter-spacing: 0.1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.title-line-1 {
+  display: block;
+  transform: translateX(-28px);
+}
+
+.title-line-2 {
+  display: block;
+  transform: translateX(30px);
+}
+
+.sub-title-en {
+  font-family: var(--font-en);
+  font-style: italic;
+  font-size: 1.24rem;
+  font-weight: 600;
+  color: var(--navy-dark);
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+
+.header-line {
+  display: block;
+  width: 82px;
+  height: 1.5px;
+  background-color: var(--gold-line);
+  margin: 10px auto 0;
+}
+
+/* --------------------------------------------------------------------------
+   Left Column: Hero Photo & Lead Copy
+   -------------------------------------------------------------------------- */
+.hero-photo-wrap {
+  width: calc(100% + 28px);
+  margin: 4px -14px 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-photo {
+  width: 100%;
+  height: auto;
+}
+
+.lead-copy {
+  font-family: var(--font-serif);
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--navy-dark);
+  line-height: 1.65;
+  letter-spacing: 0.04em;
+  padding: 0 4px;
+  margin-bottom: 18px;
+}
+
+/* --------------------------------------------------------------------------
+   Section Divider Heading (── マネーセミナー ── / ── 活用方法 ──)
+   -------------------------------------------------------------------------- */
+.section-divider-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 4px 0 14px;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--gold-line);
+}
+
+.section-heading {
+  font-family: var(--font-serif);
+  font-size: 1.56rem;
+  font-weight: 700;
+  color: var(--navy-dark);
+  letter-spacing: 0.1em;
+  padding-left: 0.1em;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Left Column: Money Seminar 4 Items
+   -------------------------------------------------------------------------- */
+.money-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.money-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--divider-line);
+}
+
+.money-item:first-child {
+  padding-top: 8px;
+}
+
+.money-item:last-child {
+  border-bottom: none;
+}
+
+.money-icon-wrap {
+  flex: 0 0 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.money-icon {
+  width: 56px;
+  max-height: 58px;
+  width: auto;
+  object-fit: contain;
+}
+
+.money-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.money-title {
+  font-family: var(--font-serif);
+  font-size: 1.24rem;
+  font-weight: 700;
+  color: var(--navy-dark);
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.money-desc {
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-sub);
+  line-height: 1.62;
+  letter-spacing: 0.03em;
+}
+
+/* --------------------------------------------------------------------------
+   Left Column: Bottom Desk Photo
+   -------------------------------------------------------------------------- */
+.desk-photo-wrap {
+  margin-top: auto;
+  margin-left: -18px;
+  width: 92%;
+  position: relative;
+  z-index: 1;
+}
+
+.desk-photo {
+  width: 100%;
+  height: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Right Column: Header (My Activities / ビジネスマナー)
+   -------------------------------------------------------------------------- */
+.manner-header {
+  position: relative;
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 14px;
+}
+
+.script-activities-img {
+  position: absolute;
+  top: -16px;
+  left: -8px;
+  width: 158px;
+  height: auto;
+  pointer-events: none;
+}
+
+.manner-heading {
+  font-family: var(--font-serif);
+  font-size: 2.02rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--navy-dark);
+  line-height: 1.25;
+  padding-left: 0.24em;
+  position: relative;
+  z-index: 2;
+}
+
+/* --------------------------------------------------------------------------
+   Right Column: Business Manner 4 Items
+   -------------------------------------------------------------------------- */
+.manner-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.manner-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--divider-line);
+}
+
+.manner-item:first-child {
+  padding-top: 6px;
+}
+
+.manner-item:last-child {
+  border-bottom: none;
+}
+
+.slash-gold {
+  font-family: var(--font-en);
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: #a98653;
+  line-height: 1;
+  margin-right: 12px;
+  flex-shrink: 0;
+  transform: translateY(-2px);
+}
+
+.manner-icon-wrap {
+  flex: 0 0 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+}
+
+.manner-icon {
+  max-width: 50px;
+  max-height: 50px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.manner-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.manner-title {
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--navy-dark);
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.manner-desc {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-sub);
+  line-height: 1.58;
+  letter-spacing: 0.02em;
+}
+
+/* --------------------------------------------------------------------------
+   Right Column: Usage Method 2x2 Arch Photos Grid (活用方法)
+   -------------------------------------------------------------------------- */
+.usage-divider-title {
+  margin-top: 2px;
+  margin-bottom: 14px;
+}
+
+.usage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 18px;
+  row-gap: 14px;
+  margin-bottom: 20px;
+  padding: 0 2px;
+}
+
+.usage-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.usage-photo-wrap {
+  width: 100%;
+  max-width: 196px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.usage-photo {
+  width: 100%;
+  height: auto;
+}
+
+.usage-label {
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--navy-dark);
+  line-height: 1.38;
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
+   Right Column: Bottom Two Rounded Usage Boxes
+   -------------------------------------------------------------------------- */
+.usage-cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: auto;
+  position: relative;
+  z-index: 3;
+}
+
+.usage-box {
+  background-color: var(--card-beige);
+  border-radius: 10px;
+  padding: 18px 10px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.usage-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #e6dacb;
+}
+
+.usage-box-icon {
+  width: 48px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.usage-box-title {
+  font-family: var(--font-serif);
+  color: var(--navy-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  line-height: 1.28;
+}
+
+.box-title-lg {
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.box-title-sm {
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.usage-box-desc {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-sub);
+  text-align: center;
+  line-height: 1.82;
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   Responsive Design (Smartphone / Tablet View: Single Column Stacked)
+   ========================================================================== */
+@media (max-width: 820px) {
+  body {
+    padding: 10px 0 28px;
+  }
+
+  .seminar-sheet {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    gap: 6px;
+  }
+
+  .col-left {
+    padding: 22px 18px 16px;
+  }
+
+  .col-right {
+    padding: 26px 18px 34px;
+  }
+
+  .main-title {
+    font-size: clamp(1.95rem, 7.8vw, 2.3rem);
+  }
+
+  .lead-copy {
+    font-size: clamp(0.92rem, 4.1vw, 1.1rem);
+  }
+
+  .section-heading {
+    font-size: clamp(1.32rem, 5.4vw, 1.52rem);
+  }
+
+  .money-item {
+    gap: 14px;
+    padding: 12px 2px;
+  }
+
+  .money-icon-wrap {
+    flex: 0 0 54px;
+  }
+
+  .money-icon {
+    max-height: 48px;
+  }
+
+  .money-title {
+    font-size: clamp(1.06rem, 4.5vw, 1.2rem);
+  }
+
+  .money-desc {
+    font-size: clamp(0.74rem, 3.3vw, 0.83rem);
+  }
+
+  .script-activities-img {
+    width: clamp(124px, 34vw, 148px);
+    top: -12px;
+    left: -6px;
+  }
+
+  .manner-heading {
+    font-size: clamp(1.62rem, 6.4vw, 1.95rem);
+  }
+
+  .manner-icon-wrap {
+    flex: 0 0 46px;
+    margin-right: 12px;
+  }
+
+  .manner-icon {
+    max-width: 42px;
+    max-height: 42px;
+  }
+
+  .manner-title {
+    font-size: clamp(0.98rem, 4.2vw, 1.15rem);
+  }
+
+  .manner-desc {
+    font-size: clamp(0.72rem, 3.15vw, 0.8rem);
+  }
+
+  .usage-grid {
+    column-gap: 12px;
+    row-gap: 12px;
+  }
+
+  .usage-label {
+    font-size: clamp(0.84rem, 3.7vw, 0.96rem);
+  }
+
+  .usage-cards-row {
+    gap: 8px;
+  }
+
+  .usage-box {
+    padding: 14px 6px 16px;
+  }
+
+  .usage-box-icon {
+    width: clamp(34px, 9.5vw, 44px);
+    height: clamp(32px, 9vw, 40px);
+  }
+
+  .box-title-lg {
+    font-size: clamp(0.94rem, 4vw, 1.12rem);
+  }
+
+  .box-title-sm {
+    font-size: clamp(0.68rem, 2.9vw, 0.84rem);
+  }
+
+  .usage-box-desc {
+    font-size: clamp(0.64rem, 2.8vw, 0.76rem);
+    line-height: 1.72;
+  }
+}
+
+@media (max-width: 380px) {
+  .col-left,
+  .col-right {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .slash-gold {
+    font-size: 1.7rem;
+    margin-right: 8px;
+  }
+
+  .manner-icon-wrap {
+    flex: 0 0 38px;
+    margin-right: 8px;
+  }
+}
+
+/* ==========================================================================
+   Interactive Animations & JS Motion Effects
+   ========================================================================== */
+#ambient-bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 25; /* Float delicate gold particles across the entire page */
+}
+
+.seminar-sheet,
+.bottom-top-nav {
+  position: relative;
+  z-index: 1;
+}
+
+/* Reveal states controlled by JS */
+.js-anim-item {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.js-anim-item.from-left {
+  transform: translateX(-22px);
+}
+
+.js-anim-item.from-right {
+  transform: translateX(22px);
+}
+
+.js-anim-item.scale-up {
+  transform: translateY(14px) scale(0.95);
+}
+
+.js-anim-item.is-visible {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* Expanding gold lines */
+.js-line-draw {
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+
+.js-line-draw.is-visible {
+  transform: scaleX(1);
+}
+
+/* Gentle floating gold icons */
+@keyframes floatIcon {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3.5px);
+  }
+}
+
+.money-icon,
+.manner-icon,
+.usage-box-icon {
+  animation: floatIcon 4s ease-in-out infinite;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
+}
+
+.money-item:nth-child(2) .money-icon,
+.manner-item:nth-child(2) .manner-icon {
+  animation-delay: 0.7s;
+}
+
+.money-item:nth-child(3) .money-icon,
+.manner-item:nth-child(3) .manner-icon {
+  animation-delay: 1.4s;
+}
+
+.money-item:nth-child(4) .money-icon,
+.manner-item:nth-child(4) .manner-icon {
+  animation-delay: 2.1s;
+}
+
+/* Hover micro-interactions */
+.money-item,
+.manner-item {
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.32s ease;
+  border-radius: 6px;
+}
+
+.money-item:hover,
+.manner-item:hover {
+  transform: translateX(4px);
+  background-color: rgba(203, 179, 143, 0.08);
+}
+
+.money-item:hover .money-icon,
+.manner-item:hover .manner-icon {
+  transform: scale(1.12) rotate(-3deg);
+  filter: drop-shadow(0 4px 8px rgba(169, 134, 83, 0.28));
+}
+
+.manner-item .slash-gold {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+}
+
+.manner-item:hover .slash-gold {
+  transform: translateY(-2px) rotate(9deg) scale(1.12);
+  color: #c59b5f;
+}
+
+.usage-grid-item {
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.usage-photo {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), filter 0.45s ease;
+}
+
+.usage-grid-item:hover {
+  transform: translateY(-4px);
+}
+
+.usage-grid-item:hover .usage-photo {
+  transform: scale(1.04);
+  filter: drop-shadow(0 8px 16px rgba(19, 34, 53, 0.14));
+}
+
+.usage-box {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.35s ease;
+}
+
+.usage-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(169, 134, 83, 0.16);
+  background-color: #faf3ea;
+}
+
+.usage-box:hover .usage-box-icon {
+  transform: scale(1.1);
+}
+
+.hero-photo,
+.desk-photo,
+.script-activities-img {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Gold touch/click ripple */
+.gold-ripple {
+  position: fixed;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(197, 166, 124, 0.55) 0%, rgba(197, 166, 124, 0) 70%);
+  border: 1px solid rgba(197, 166, 124, 0.65);
+  transform: translate(-50%, -50%) scale(0.2);
+  pointer-events: none;
+  z-index: 9999;
+  animation: goldRippleOut 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes goldRippleOut {
+  0% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(5.5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-anim-item,
+  .js-line-draw {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
