@@ -80,11 +80,30 @@ const PORTFOLIO_PHOTOS = [
   }
 ];
 
+// ブラウザによるスクロール位置の自動復元を無効化し、ページ遷移時に必ず最上部から表示
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 document.addEventListener('DOMContentLoaded', () => {
+  window.scrollTo(0, 0);
   initPhotoViewer();
   initAmbientGoldCanvas();
   initScrollReveal();
   initGoldRipple();
+  // レイアウト完了後にも最上部を保証
+  requestAnimationFrame(() => {
+    window.scrollTo(0, 0);
+  });
+});
+
+window.addEventListener('pageshow', () => {
+  window.scrollTo(0, 0);
+});
+
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
 });
 
 /* ==========================================================================
@@ -138,6 +157,10 @@ function initPhotoViewer() {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    const sheet = modal.querySelector('.viewer-sheet');
+    if (sheet) {
+      sheet.scrollTop = 0;
+    }
   }
 
   function closeViewer() {

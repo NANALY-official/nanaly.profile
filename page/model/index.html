@@ -9,8 +9,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  </script>
 </head>
-<body>
+<body id="top">
+  <div id="page-top" aria-hidden="true" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; pointer-events: none;"></div>
   <!-- ==================== TOP TWO-COLUMN SHEET: MODEL & PHOTO GALLERY ==================== -->
   <main class="model-sheet">
     <!-- ==================== LEFT COLUMN: MODEL ACTIVITY ==================== -->
@@ -30,7 +37,7 @@
       </div>
 
       <!-- Hero Kimono Photo (Slanted top-left edge) -->
-      <a href="portfolio.html?photo=0" class="hero-kimono-wrap" aria-label="和装ポートレートをポートフォリオで見る">
+      <a href="portfolio.html?photo=0#top" class="hero-kimono-wrap" aria-label="和装ポートレートをポートフォリオで見る">
         <img src="image/hero_kimono.png" alt="和装モデルポートレート" class="hero-kimono-img" />
       </a>
 
@@ -80,10 +87,10 @@
         </div>
 
         <div class="ad-photos-grid">
-          <a href="portfolio.html?photo=3" class="ad-photo-card" aria-label="ライフスタイル写真をポートフォリオで見る">
+          <a href="portfolio.html?photo=3#top" class="ad-photo-card" aria-label="ライフスタイル写真をポートフォリオで見る">
             <img src="image/IMG_2534.JPG" alt="ライフスタイル・商品撮影" class="ad-photo-img" />
           </a>
-          <a href="portfolio.html?photo=9" class="ad-photo-card" aria-label="商品広告ビジュアルをポートフォリオで見る">
+          <a href="portfolio.html?photo=9#top" class="ad-photo-card" aria-label="商品広告ビジュアルをポートフォリオで見る">
             <img src="image/ad_sanrio_crop.png" alt="サンリオキャラクターズ ハグモッチ広告撮影" class="ad-photo-img" />
           </a>
         </div>
@@ -108,7 +115,7 @@
 
       <!-- Salon Counseling Photo -->
       <div class="salon-photo-block">
-        <a href="portfolio.html?photo=8" class="salon-photo-wrap" aria-label="カウンセリングシーンをポートフォリオで見る">
+        <a href="portfolio.html?photo=8#top" class="salon-photo-wrap" aria-label="カウンセリングシーンをポートフォリオで見る">
           <img src="image/IMG_2541.JPG" alt="美容・サロン撮影" class="salon-photo-img" />
         </a>
         <div class="salon-caption-bar">
@@ -173,7 +180,7 @@
       </div>
 
       <!-- Portfolio Callout Box (Links to separate portfolio.html page) -->
-      <a href="portfolio.html" class="portfolio-callout-outer" aria-label="別冊ポートフォリオページを開く">
+      <a href="portfolio.html#top" class="portfolio-callout-outer" aria-label="別冊ポートフォリオページを開く">
         <div class="portfolio-callout-inner">
           <div class="portfolio-callout-header">
             <span class="callout-line"></span>

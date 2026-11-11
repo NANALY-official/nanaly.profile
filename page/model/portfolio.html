@@ -9,8 +9,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  </script>
 </head>
-<body>
+<body id="top">
+  <div id="page-top" aria-hidden="true" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; pointer-events: none;"></div>
   <!-- ==================== PHOTO PORTFOLIO SHEET (12 PHOTOGRAPHS INDEX) ==================== -->
   <main id="portfolio-section" class="portfolio-sheet" aria-label="PHOTO PORTFOLIO 撮影写真一覧">
     <div class="corner-decor pf-corner-top-left" aria-hidden="true"></div>
@@ -211,7 +218,7 @@
 
   <!-- ==================== Bottom Navigation Buttons ==================== -->
   <footer class="bottom-top-nav bottom-dual-nav">
-    <a href="index.html" class="top-return-btn">
+    <a href="index.html#top" class="top-return-btn">
       <span class="top-return-arrow" aria-hidden="true">←</span>
       <span class="top-return-text">モデル活動に戻る</span>
     </a>

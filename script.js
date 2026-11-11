@@ -301,12 +301,12 @@ function initDetailModal() {
     // プロフィール・セミナー講師カードをクリックした時は各専用ページへ遷移
     if (category === 'profile') {
       card.addEventListener('click', () => {
-        window.location.href = 'page/profile/index.html';
+        window.location.href = 'page/profile/index.html#top';
       });
       card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          window.location.href = 'page/profile/index.html';
+          window.location.href = 'page/profile/index.html#top';
         }
       });
       return;
@@ -314,12 +314,12 @@ function initDetailModal() {
 
     if (category === 'seminar') {
       card.addEventListener('click', () => {
-        window.location.href = 'page/seminar/index.html';
+        window.location.href = 'page/seminar/index.html#top';
       });
       card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          window.location.href = 'page/seminar/index.html';
+          window.location.href = 'page/seminar/index.html#top';
         }
       });
       return;
@@ -327,12 +327,12 @@ function initDetailModal() {
 
     if (category === 'fp') {
       card.addEventListener('click', () => {
-        window.location.href = 'page/fp/index.html';
+        window.location.href = 'page/fp/index.html#top';
       });
       card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          window.location.href = 'page/fp/index.html';
+          window.location.href = 'page/fp/index.html#top';
         }
       });
       return;
@@ -340,12 +340,12 @@ function initDetailModal() {
 
     if (category === 'secretary') {
       card.addEventListener('click', () => {
-        window.location.href = 'page/secretary/index.html';
+        window.location.href = 'page/secretary/index.html#top';
       });
       card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          window.location.href = 'page/secretary/index.html';
+          window.location.href = 'page/secretary/index.html#top';
         }
       });
       return;
@@ -366,12 +366,12 @@ function initDetailModal() {
 
     if (category === 'model') {
       card.addEventListener('click', () => {
-        window.location.href = 'page/model/index.html';
+        window.location.href = 'page/model/index.html#top';
       });
       card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          window.location.href = 'page/model/index.html';
+          window.location.href = 'page/model/index.html#top';
         }
       });
       return;
