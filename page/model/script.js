@@ -9,72 +9,84 @@ const PORTFOLIO_PHOTOS = [
   {
     num: '01',
     title: '和装ポートレート',
+    titleEn: 'Kimono Portrait',
     en: 'KIMONO',
     src: 'image/IMG_2542.JPG'
   },
   {
     num: '02',
     title: 'ブライダル・メイク',
+    titleEn: 'Bridal & Makeup',
     en: 'BRIDAL / BEAUTY',
     src: 'image/IMG_2560.JPG'
   },
   {
     num: '03',
     title: '浴衣ポートレート',
+    titleEn: 'Yukata Portrait',
     en: 'PORTRAIT',
     src: 'image/IMG_2557.JPG'
   },
   {
     num: '04',
     title: 'ライフスタイル',
+    titleEn: 'Lifestyle',
     en: 'LIFESTYLE',
     src: 'image/IMG_2534.JPG'
   },
   {
     num: '05',
     title: 'アパレル・商品撮影',
+    titleEn: 'Apparel & Product',
     en: 'APPAREL',
     src: 'image/IMG_2535.JPG'
   },
   {
     num: '06',
     title: '商品紹介ビジュアル',
+    titleEn: 'Product Visual',
     en: 'PRODUCT VISUAL',
     src: 'image/IMG_2536.JPG'
   },
   {
     num: '07',
     title: '商品着用シーン',
+    titleEn: 'Product Wearing Scene',
     en: 'PRODUCT',
     src: 'image/IMG_2537.JPG'
   },
   {
     num: '08',
     title: '美容・サロン撮影',
+    titleEn: 'Beauty & Salon Shoot',
     en: 'SALON',
     src: 'image/IMG_2538.JPG'
   },
   {
     num: '09',
     title: 'カウンセリングシーン',
+    titleEn: 'Counseling Scene',
     en: 'SALON SCENE',
     src: 'image/IMG_2541.JPG'
   },
   {
     num: '10',
     title: '商品広告ビジュアル',
+    titleEn: 'Advertising Visual',
     en: 'ADVERTISING',
     src: 'image/IMG_2539.JPG'
   },
   {
     num: '11',
     title: '商品カット・使用シーン',
+    titleEn: 'Product Usage Scenes',
     en: 'PRODUCT SCENES',
     src: 'image/IMG_2540.JPG'
   },
   {
     num: '12',
     title: '撮影のひとコマ',
+    titleEn: 'Behind the Scenes',
     en: 'BEHIND THE SCENES',
     src: 'image/IMG_2543.JPG'
   }
@@ -126,14 +138,16 @@ function initPhotoViewer() {
   function renderSlide(index) {
     currentIndex = Math.max(0, Math.min(PORTFOLIO_PHOTOS.length - 1, index));
     const item = PORTFOLIO_PHOTOS[currentIndex];
+    const isEn = window.NANALY_I18N?.getLang?.() === 'en';
+    const displayTitle = isEn ? item.titleEn : item.title;
 
     counterEl.textContent = `${item.num} / 12`;
-    titleEl.textContent = item.title;
+    titleEl.textContent = displayTitle;
     enEl.textContent = item.en;
 
     imgEl.style.opacity = '0.25';
     imgEl.src = item.src;
-    imgEl.alt = `${item.num} ${item.title}`;
+    imgEl.alt = `${item.num} ${displayTitle}`;
     imgEl.onload = () => {
       imgEl.style.opacity = '1';
     };
@@ -212,6 +226,14 @@ function initPhotoViewer() {
     if (!Number.isNaN(initialIdx) && initialIdx >= 0 && initialIdx < PORTFOLIO_PHOTOS.length) {
       openViewer(initialIdx);
     }
+  }
+
+  if (window.NANALY_I18N?.onChange) {
+    window.NANALY_I18N.onChange(() => {
+      if (modal.classList.contains('active')) {
+        renderSlide(currentIndex);
+      }
+    });
   }
 }
 

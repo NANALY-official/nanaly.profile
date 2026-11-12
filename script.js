@@ -220,7 +220,7 @@ const serviceDetails = {
   beauty: {
     title: '美容機器',
     category: 'BEAUTY DEVICE',
-    icon: 'image/icon-beauty.png',
+    icon: 'image/icon-beauty-device.png',
     html: `
       <p><strong>妥協のない美と機能性を追求した美容機器の開発・販売</strong></p>
       <p>毎日のケアを上質なひとときに変える、先進のビューティーテック製品をお届けします。</p>
@@ -263,6 +263,24 @@ const serviceDetails = {
   }
 };
 
+const serviceDetailsEn = {
+  association: {
+    title: "Children's Future & Money Research (Tentative)",
+    category: 'GENERAL INCORPORATED ASSOCIATION',
+    icon: 'image/icon-association.png',
+    html: `
+      <p><strong>General Incorporated Association: Children's Future &amp; Money Research (Tentative)</strong></p>
+      <p>We work toward a society where children—the next generation—naturally develop practical life skills and strong financial literacy.</p>
+      <ul>
+        <li>Interactive money workshops for parents and children</li>
+        <li>Visiting financial literacy classes for schools and communities</li>
+        <li>Development of educational financial materials and games for kids</li>
+        <li>Supporting members and corporate partners welcome</li>
+      </ul>
+    `
+  }
+};
+
 function initDetailModal() {
   const modal = document.getElementById('detail-modal');
   const closeBtn = document.getElementById('modal-close');
@@ -274,11 +292,14 @@ function initDetailModal() {
   const modalDesc = document.getElementById('modal-description');
 
   if (!modal) return;
+  let activeCategoryKey = null;
 
   function openModal(categoryKey) {
-    const data = serviceDetails[categoryKey];
+    const isEn = window.NANALY_I18N?.getLang?.() === 'en';
+    const data = (isEn && serviceDetailsEn[categoryKey]) || serviceDetails[categoryKey];
     if (!data) return;
 
+    activeCategoryKey = categoryKey;
     modalIcon.innerHTML = `<img src="${data.icon}" alt="${data.title}">`;
     modalCategory.textContent = data.category;
     modalTitle.textContent = data.title;
@@ -287,6 +308,14 @@ function initDetailModal() {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+  }
+
+  if (window.NANALY_I18N?.onChange) {
+    window.NANALY_I18N.onChange(() => {
+      if (activeCategoryKey && modal.classList.contains('active')) {
+        openModal(activeCategoryKey);
+      }
+    });
   }
 
   function closeModal() {
@@ -417,6 +446,11 @@ function initDetailModal() {
       closeModal();
     }
   });
+
+  const modalParam = new URLSearchParams(window.location.search).get('modal');
+  if (modalParam && serviceDetails[modalParam]) {
+    openModal(modalParam);
+  }
 }
 
 /* ==========================================================================

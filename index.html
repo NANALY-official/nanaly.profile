@@ -12,19 +12,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+JP:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/lang-switcher.css">
   <script>
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+    try {
+      var savedLang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nanaly_lang');
+      if (savedLang === 'en') document.documentElement.lang = 'en';
+    } catch (e) {}
   </script>
 </head>
-<body id="top">
+<body id="top" data-i18n-title="top.pageTitle">
   <!-- 背景の金箔・微粒子キャンバス -->
   <canvas id="ambient-canvas"></canvas>
 
   <main class="page-container">
     <div class="card-wrapper">
+
+      <!-- 言語切り替え（JP / EN） -->
+      <div class="lang-switch-bar lang-switch-bar--top" role="region" aria-label="Language switcher">
+        <div class="lang-switch-pill">
+          <button type="button" class="lang-btn is-active" data-lang="ja" aria-pressed="true" aria-label="日本語">JP</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+        </div>
+      </div>
 
       <!-- ================= 1. 上部名刺カード ================= -->
       <section class="business-card" id="business-card" role="region" aria-label="名刺">
@@ -41,11 +54,11 @@
           <!-- 右側: プロフィールテキスト -->
           <div class="card-right">
             <div class="card-right-content">
-              <h1 class="owner-name">山本 奈々</h1>
-              <p class="owner-en">NANA YAMAMOTO</p>
+              <h1 class="owner-name" data-i18n="top.ownerName">山本 奈々</h1>
+              <p class="owner-en" data-i18n="top.ownerEn">NANA YAMAMOTO</p>
               <div class="owner-affiliation">
-                <p class="company-name">株式会社NANALY</p>
-                <p class="job-title">代表取締役</p>
+                <p class="company-name" data-i18n="top.company">株式会社NANALY</p>
+                <p class="job-title" data-i18n="top.jobTitle">代表取締役</p>
               </div>
             </div>
           </div>
@@ -68,7 +81,7 @@
             <div class="icon-frame">
               <img src="image/icon-profile.png" alt="プロフィール" class="menu-icon" loading="lazy">
             </div>
-            <h2 class="card-title">プロフィール</h2>
+            <h2 class="card-title" data-i18n="top.card.profile">プロフィール</h2>
             <div class="card-arrow" aria-hidden="true">
               <img src="image/arrow.svg" alt="" class="arrow-svg">
             </div>
@@ -76,16 +89,15 @@
           <div class="card-ripple"></div>
         </article>
 
-        <!-- 2. セミナー講師 -->
-        <article class="grid-card" data-category="seminar" tabindex="0">
+        <!-- 2. 美容機器 -->
+        <article class="grid-card" data-category="beauty" tabindex="0">
           <div class="card-body">
             <div class="icon-frame">
-              <img src="image/icon-seminar.png" alt="セミナー講師" class="menu-icon" loading="lazy">
+              <img src="image/icon-beauty-device.png" alt="美容機器" class="menu-icon" loading="lazy">
             </div>
-            <h2 class="card-title">セミナー講師</h2>
-            <p class="card-sub">
-              <span>お金の授業</span>
-              <span>ビジネスマナー</span>
+            <h2 class="card-title" data-i18n="top.card.beauty">美容機器</h2>
+            <p class="card-sub" data-i18n="top.card.beautySub">
+              <span>開発・販売</span>
             </p>
             <div class="card-arrow" aria-hidden="true">
               <img src="image/arrow.svg" alt="" class="arrow-svg">
@@ -94,28 +106,14 @@
           <div class="card-ripple"></div>
         </article>
 
-        <!-- 3. FP・保険代理店 -->
-        <article class="grid-card" data-category="fp" tabindex="0">
-          <div class="card-body">
-            <div class="icon-frame">
-              <img src="image/icon-fp.png" alt="FP・保険代理店" class="menu-icon" loading="lazy">
-            </div>
-            <h2 class="card-title">FP・保険代理店</h2>
-            <div class="card-arrow" aria-hidden="true">
-              <img src="image/arrow.svg" alt="" class="arrow-svg">
-            </div>
-          </div>
-          <div class="card-ripple"></div>
-        </article>
-
-        <!-- 4. オンライン秘書 -->
+        <!-- 3. オンライン秘書 -->
         <article class="grid-card" data-category="secretary" tabindex="0">
           <div class="card-body">
             <div class="icon-frame">
               <img src="image/icon-secretary.png" alt="オンライン秘書" class="menu-icon" loading="lazy">
             </div>
-            <h2 class="card-title">オンライン秘書</h2>
-            <p class="card-sub">
+            <h2 class="card-title" data-i18n="top.card.secretary">オンライン秘書</h2>
+            <p class="card-sub" data-i18n="top.card.secretarySub">
               <span>営業代行</span>
             </p>
             <div class="card-arrow" aria-hidden="true">
@@ -125,15 +123,30 @@
           <div class="card-ripple"></div>
         </article>
 
-        <!-- 5. 美容機器 -->
-        <article class="grid-card" data-category="beauty" tabindex="0">
+        <!-- 4. FP・保険代理店 -->
+        <article class="grid-card" data-category="fp" tabindex="0">
           <div class="card-body">
             <div class="icon-frame">
-              <img src="image/icon-beauty.png" alt="美容機器" class="menu-icon" loading="lazy">
+              <img src="image/icon-fp.png" alt="FP・保険代理店" class="menu-icon" loading="lazy">
             </div>
-            <h2 class="card-title">美容機器</h2>
-            <p class="card-sub">
-              <span>開発・販売</span>
+            <h2 class="card-title" data-i18n="top.card.fp">FP・保険代理店</h2>
+            <div class="card-arrow" aria-hidden="true">
+              <img src="image/arrow.svg" alt="" class="arrow-svg">
+            </div>
+          </div>
+          <div class="card-ripple"></div>
+        </article>
+
+        <!-- 5. セミナー講師 -->
+        <article class="grid-card" data-category="seminar" tabindex="0">
+          <div class="card-body">
+            <div class="icon-frame">
+              <img src="image/icon-seminar.png" alt="セミナー講師" class="menu-icon" loading="lazy">
+            </div>
+            <h2 class="card-title" data-i18n="top.card.seminar">セミナー講師</h2>
+            <p class="card-sub" data-i18n="top.card.seminarSub">
+              <span>お金の授業</span>
+              <span>ビジネスマナー</span>
             </p>
             <div class="card-arrow" aria-hidden="true">
               <img src="image/arrow.svg" alt="" class="arrow-svg">
@@ -148,7 +161,7 @@
             <div class="icon-frame">
               <img src="image/icon-model.png" alt="モデル活動" class="menu-icon" loading="lazy">
             </div>
-            <h2 class="card-title">モデル活動</h2>
+            <h2 class="card-title" data-i18n="top.card.model">モデル活動</h2>
             <div class="card-arrow" aria-hidden="true">
               <img src="image/arrow.svg" alt="" class="arrow-svg">
             </div>
@@ -167,8 +180,8 @@
             </div>
             <div class="banner-gold-divider"></div>
             <div class="banner-text-content">
-              <p class="banner-sub">一般社団法人</p>
-              <h2 class="banner-title">こどもの未来とお金の研究会(仮)</h2>
+              <p class="banner-sub" data-i18n="top.banner.sub">一般社団法人</p>
+              <h2 class="banner-title" data-i18n="top.banner.title">こどもの未来とお金の研究会(仮)</h2>
             </div>
             <div class="banner-arrow" aria-hidden="true">
               <img src="image/arrow.svg" alt="" class="arrow-svg">
@@ -185,7 +198,7 @@
           <span class="btn-icon">
             <img src="image/icon-mail.svg" alt="メール" class="action-svg">
           </span>
-          <span class="btn-label">お問い合わせ</span>
+          <span class="btn-label" data-i18n="top.footer.contact">お問い合わせ</span>
           <span class="btn-arrow" aria-hidden="true">
             <img src="image/arrow.svg" alt="" class="arrow-svg">
           </span>
@@ -196,7 +209,7 @@
           <span class="btn-icon">
             <img src="image/icon-instagram.svg" alt="Instagram" class="action-svg">
           </span>
-          <span class="btn-label">Instagram</span>
+          <span class="btn-label" data-i18n="top.footer.instagram">Instagram</span>
           <span class="btn-arrow" aria-hidden="true">
             <img src="image/arrow.svg" alt="" class="arrow-svg">
           </span>
@@ -207,7 +220,7 @@
           <span class="btn-icon">
             <img src="image/icon-line.svg" alt="LINE" class="action-svg line-svg">
           </span>
-          <span class="btn-label">LINE</span>
+          <span class="btn-label" data-i18n="top.footer.line">LINE</span>
           <span class="btn-arrow" aria-hidden="true">
             <img src="image/arrow.svg" alt="" class="arrow-svg">
           </span>
@@ -233,8 +246,8 @@
         <!-- JSで動的に詳細テキストを挿入 -->
       </div>
       <div class="modal-footer">
-        <button class="modal-action-btn primary" id="modal-primary-btn">詳細を見る</button>
-        <button class="modal-action-btn secondary" id="modal-secondary-btn">閉じる</button>
+        <button class="modal-action-btn primary" id="modal-primary-btn" data-i18n="top.modal.primary">詳細を見る</button>
+        <button class="modal-action-btn secondary" id="modal-secondary-btn" data-i18n="top.modal.secondary">閉じる</button>
       </div>
     </div>
   </div>
@@ -276,6 +289,7 @@
     </div>
   </div>
 
+  <script src="js/i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -9,14 +9,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../../css/lang-switcher.css" />
   <script>
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+    try {
+      var savedLang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nanaly_lang');
+      if (savedLang === 'en') document.documentElement.lang = 'en';
+    } catch (e) {}
   </script>
 </head>
-<body id="top">
+<body id="top" data-i18n-title="sem.pageTitle">
+  <div class="lang-switch-bar lang-switch-bar--sheet" role="region" aria-label="Language switcher">
+    <div class="lang-switch-pill">
+      <button type="button" class="lang-btn is-active" data-lang="ja" aria-pressed="true" aria-label="日本語">JP</button>
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+    </div>
+  </div>
   <main class="seminar-sheet">
     <!-- ==================== LEFT COLUMN: SEMINAR & MONEY SEMINAR ==================== -->
     <section class="col col-left">
@@ -29,8 +40,8 @@
       <header class="seminar-header">
         <p class="brand-en">N A N A L Y</p>
         <h1 class="main-title">
-          <span class="title-line-1">セミナー・</span>
-          <span class="title-line-2">講師活動</span>
+          <span class="title-line-1" data-i18n="sem.titleLine1">セミナー・</span>
+          <span class="title-line-2" data-i18n="sem.titleLine2">講師活動</span>
         </h1>
         <p class="sub-title-en">Seminar &amp; Lesson</p>
         <span class="header-line"></span>
@@ -42,16 +53,14 @@
       </div>
 
       <!-- Lead Copy -->
-      <p class="lead-copy">
+      <p class="lead-copy" data-i18n="sem.leadCopy">
         お金の知識と、社会で役立つマナーを、<br />
         わかりやすく、実践的に。
       </p>
 
       <!-- Section Title: マネーセミナー -->
-      <div class="section-divider-title">
-        <span class="divider-line"></span>
-        <h2 class="section-heading">マネーセミナー</h2>
-        <span class="divider-line"></span>
+      <div class="section-divider-title money-pillar-header">
+        <h2 class="section-heading money-pillar-heading" data-i18n="sem.moneyHeading">マネーセミナー</h2>
       </div>
 
       <!-- Money Seminar 4 Items -->
@@ -62,8 +71,8 @@
             <img src="image/icon_money_invest.png" alt="投資の基本アイコン" class="money-icon" />
           </div>
           <div class="money-text">
-            <h3 class="money-title">投資の基本</h3>
-            <p class="money-desc">
+            <h3 class="money-title" data-i18n="sem.money1Title">投資の基本</h3>
+            <p class="money-desc" data-i18n="sem.money1Desc">
               はじめての資産形成、<br />
               NISA・iDeCoの基本を学びます。
             </p>
@@ -76,8 +85,8 @@
             <img src="image/icon_money_kids.png" alt="子どもの金融教育アイコン" class="money-icon" />
           </div>
           <div class="money-text">
-            <h3 class="money-title">子どもの金融教育</h3>
-            <p class="money-desc">
+            <h3 class="money-title" data-i18n="sem.money2Title">子どもの金融教育</h3>
+            <p class="money-desc" data-i18n="sem.money2Desc">
               お金の役割・使い方・貯め方・<br />
               増やし方を、わかりやすく伝えます。
             </p>
@@ -90,8 +99,8 @@
             <img src="image/icon_money_insurance.png" alt="保険の基礎と見直しアイコン" class="money-icon" />
           </div>
           <div class="money-text">
-            <h3 class="money-title">保険の基礎と見直し</h3>
-            <p class="money-desc">
+            <h3 class="money-title" data-i18n="sem.money3Title">保険の基礎と見直し</h3>
+            <p class="money-desc" data-i18n="sem.money3Desc">
               生命保険・医療保険の仕組みと<br />
               選び方を解説します。
             </p>
@@ -104,8 +113,8 @@
             <img src="image/icon_money_social.png" alt="社会保障と税金のキホンアイコン" class="money-icon" />
           </div>
           <div class="money-text">
-            <h3 class="money-title">社会保障と税金のキホン</h3>
-            <p class="money-desc">
+            <h3 class="money-title" data-i18n="sem.money4Title">社会保障と税金のキホン</h3>
+            <p class="money-desc" data-i18n="sem.money4Desc">
               公的医療保険・年金・高額療養費など、<br />
               知っておきたい制度を学びます。
             </p>
@@ -125,10 +134,10 @@
       <div class="corner-decor corner-bottom-right-rightcol" aria-hidden="true"></div>
 
       <!-- Header -->
-      <header class="manner-header">
-        <img src="image/script_activities.png" alt="My Activities" class="script-activities-img" />
-        <h2 class="manner-heading">ビジネスマナー</h2>
-        <span class="header-line"></span>
+      <header class="manner-header manner-pillar-header">
+        <div class="manner-pillar-banner">
+          <h2 class="manner-heading" data-i18n="sem.mannerHeading">ビジネスマナー</h2>
+        </div>
       </header>
 
       <!-- Business Manner 4 Items -->
@@ -140,8 +149,8 @@
             <img src="image/icon_manner_business.png" alt="ビジネスマナーアイコン" class="manner-icon" />
           </div>
           <div class="manner-text">
-            <h3 class="manner-title">ビジネスマナー</h3>
-            <p class="manner-desc">
+            <h3 class="manner-title" data-i18n="sem.manner1Title">ビジネスマナー</h3>
+            <p class="manner-desc" data-i18n="sem.manner1Desc">
               はじめてのビジネスマナー。<br />
               挨拶・敬語・名刺交換・電話対応など<br />
               社会人の基本を身につけます。
@@ -156,8 +165,8 @@
             <img src="image/icon_manner_dining.png" alt="食事マナーアイコン" class="manner-icon" />
           </div>
           <div class="manner-text">
-            <h3 class="manner-title">食事マナー</h3>
-            <p class="manner-desc">
+            <h3 class="manner-title" data-i18n="sem.manner2Title">食事マナー</h3>
+            <p class="manner-desc" data-i18n="sem.manner2Desc">
               和食・洋食の基本と、<br />
               美しい食べ方を学びます。
             </p>
@@ -171,8 +180,8 @@
             <img src="image/icon_manner_language.png" alt="正しい言葉遣いアイコン" class="manner-icon" />
           </div>
           <div class="manner-text">
-            <h3 class="manner-title">正しい言葉遣い</h3>
-            <p class="manner-desc">
+            <h3 class="manner-title" data-i18n="sem.manner3Title">正しい言葉遣い</h3>
+            <p class="manner-desc" data-i18n="sem.manner3Desc">
               間違えやすい敬語や、日本語の<br />
               使い方をわかりやすく解説します。
             </p>
@@ -186,8 +195,8 @@
             <img src="image/icon_manner_email.png" alt="ビジネスメール・LINEの作法アイコン" class="manner-icon" />
           </div>
           <div class="manner-text">
-            <h3 class="manner-title">ビジネスメール・LINEの作法</h3>
-            <p class="manner-desc">
+            <h3 class="manner-title" data-i18n="sem.manner4Title">ビジネスメール・LINEの作法</h3>
+            <p class="manner-desc" data-i18n="sem.manner4Desc">
               上司・取引先への書き方と、<br />
               信頼されるコミュニケーションの基本を<br />
               お伝えします。
@@ -199,7 +208,7 @@
       <!-- Section Title: 活用方法 -->
       <div class="section-divider-title usage-divider-title">
         <span class="divider-line"></span>
-        <h2 class="section-heading">活用方法</h2>
+        <h2 class="section-heading" data-i18n="sem.usageHeading">活用方法</h2>
         <span class="divider-line"></span>
       </div>
 
@@ -209,14 +218,14 @@
           <div class="usage-photo-wrap">
             <img src="image/usage_corporate.png" alt="企業・団体の研修" class="usage-photo" />
           </div>
-          <p class="usage-label">企業・団体の研修</p>
+          <p class="usage-label" data-i18n="sem.usage1">企業・団体の研修</p>
         </div>
 
         <div class="usage-grid-item">
           <div class="usage-photo-wrap">
             <img src="image/usage_university.png" alt="大学・専門学校の講義" class="usage-photo" />
           </div>
-          <p class="usage-label">
+          <p class="usage-label" data-i18n="sem.usage2">
             大学・専門学校の<br />
             講義
           </p>
@@ -226,7 +235,7 @@
           <div class="usage-photo-wrap">
             <img src="image/usage_community.png" alt="地域・保護者向けセミナー" class="usage-photo" />
           </div>
-          <p class="usage-label">
+          <p class="usage-label" data-i18n="sem.usage3">
             地域・保護者向け<br />
             セミナー
           </p>
@@ -236,7 +245,7 @@
           <div class="usage-photo-wrap">
             <img src="image/usage_event.png" alt="イベント・社内研修" class="usage-photo" />
           </div>
-          <p class="usage-label">イベント・社内研修</p>
+          <p class="usage-label" data-i18n="sem.usage4">イベント・社内研修</p>
         </div>
       </div>
 
@@ -247,11 +256,11 @@
           <div class="usage-box-header">
             <img src="image/icon_usage_home.png" alt="家庭教師アイコン" class="usage-box-icon" />
             <h3 class="usage-box-title">
-              <span class="box-title-lg">家庭教師</span>
-              <span class="box-title-sm">としての活用</span>
+              <span class="box-title-lg" data-i18n="sem.card1Lg">家庭教師</span>
+              <span class="box-title-sm" data-i18n="sem.card1Sm">としての活用</span>
             </h3>
           </div>
-          <p class="usage-box-desc">
+          <p class="usage-box-desc" data-i18n="sem.card1Desc">
             お子様の学習サポートや<br />
             マネー教育にも<br />
             対応します。
@@ -263,11 +272,11 @@
           <div class="usage-box-header">
             <img src="image/icon_usage_company.png" alt="企業の福利厚生アイコン" class="usage-box-icon" />
             <h3 class="usage-box-title">
-              <span class="box-title-lg">企業の</span>
-              <span class="box-title-sm">福利厚生として</span>
+              <span class="box-title-lg" data-i18n="sem.card2Lg">企業の</span>
+              <span class="box-title-sm" data-i18n="sem.card2Sm">福利厚生として</span>
             </h3>
           </div>
-          <p class="usage-box-desc">
+          <p class="usage-box-desc" data-i18n="sem.card2Desc">
             社員研修・マナー教育・<br />
             金融リテラシー向上など、<br />
             企業の福利厚生として<br />
@@ -282,10 +291,11 @@
   <footer class="bottom-top-nav">
     <a href="../../index.html" class="top-return-btn">
       <span class="top-return-arrow" aria-hidden="true">←</span>
-      <span class="top-return-text">TOPに戻る</span>
+      <span class="top-return-text" data-i18n="nav.backToTop">TOPに戻る</span>
     </a>
   </footer>
 
+  <script src="../../js/i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

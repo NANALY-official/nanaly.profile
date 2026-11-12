@@ -9,14 +9,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../../css/lang-switcher.css" />
   <script>
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+    try {
+      var savedLang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nanaly_lang');
+      if (savedLang === 'en') document.documentElement.lang = 'en';
+    } catch (e) {}
   </script>
 </head>
-<body id="top">
+<body id="top" data-i18n-title="profile.pageTitle">
+  <div class="lang-switch-bar lang-switch-bar--sheet" role="region" aria-label="Language switcher">
+    <div class="lang-switch-pill">
+      <button type="button" class="lang-btn is-active" data-lang="ja" aria-pressed="true" aria-label="日本語">JP</button>
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+    </div>
+  </div>
   <main class="profile-sheet">
     <!-- ==================== LEFT COLUMN: PROFILE ==================== -->
     <section class="col col-left">
@@ -28,7 +39,7 @@
       <!-- Header -->
       <header class="profile-header">
         <p class="profile-en">PROFILE</p>
-        <h1 class="profile-ja">プロフィール</h1>
+        <h1 class="profile-ja" data-i18n="profile.titleJa">プロフィール</h1>
         <span class="header-line"></span>
       </header>
 
@@ -37,9 +48,9 @@
         <div class="hero-text-col">
           <img src="image/script_profile.png" alt="Profile" class="script-profile-img" />
           <div class="hero-name-group">
-            <h2 class="person-name">山本 奈々</h2>
-            <p class="person-company">株式会社NANALY</p>
-            <p class="person-role">代 表 取 締 役</p>
+            <h2 class="person-name" data-i18n="profile.name">山本 奈々</h2>
+            <p class="person-company" data-i18n="profile.company">株式会社NANALY</p>
+            <p class="person-role" data-i18n="profile.role">代 表 取 締 役</p>
           </div>
         </div>
         <div class="hero-photo-col">
@@ -50,18 +61,18 @@
       <!-- Info Rows (出身地 / 得意なこと) -->
       <div class="bio-info-section">
         <div class="bio-row">
-          <span class="bio-tag">出身地</span>
+          <span class="bio-tag" data-i18n="profile.fromLabel">出身地</span>
           <div class="bio-content bio-hometown">
-            <span class="bio-value-lg">福井県</span>
+            <span class="bio-value-lg" data-i18n="profile.fromValue">福井県</span>
           </div>
           <img src="image/icon_dino_clean.png" alt="恐竜アイコン" class="dino-illust" />
         </div>
 
         <div class="bio-row bio-row-skill">
-          <span class="bio-tag">得意なこと</span>
+          <span class="bio-tag" data-i18n="profile.skillLabel">得意なこと</span>
           <div class="bio-content">
-            <p class="bio-skill-text">営業・マルチタスク</p>
-            <p class="bio-skill-text">1日12時間眠れます</p>
+            <p class="bio-skill-text" data-i18n="profile.skill1">営業・マルチタスク</p>
+            <p class="bio-skill-text" data-i18n="profile.skill2">1日12時間眠れます</p>
           </div>
           <img src="image/icon_clock_clean.png" alt="時計アイコン" class="clock-illust" />
         </div>
@@ -70,7 +81,7 @@
       <!-- Hobby Divider Title -->
       <div class="hobby-section-title">
         <span class="hobby-line"></span>
-        <h3 class="hobby-heading">趣味</h3>
+        <h3 class="hobby-heading" data-i18n="profile.hobbyHeading">趣味</h3>
         <span class="hobby-line"></span>
       </div>
 
@@ -79,8 +90,8 @@
         <div class="cars-header">
           <img src="image/icon_car_clean.png" alt="スポーツカーアイコン" class="car-illust" />
           <div class="cars-header-text">
-            <h4 class="hobby-subtitle">スポーツカー</h4>
-            <p class="cars-lead">全てMT車にこだわっています！</p>
+            <h4 class="hobby-subtitle" data-i18n="profile.carsTitle">スポーツカー</h4>
+            <p class="cars-lead" data-i18n="profile.carsLead">全てMT車にこだわっています！</p>
           </div>
         </div>
 
@@ -88,7 +99,7 @@
           <span class="flare-left" aria-hidden="true">
             <i></i><i></i><i></i>
           </span>
-          <span class="cars-intro-copy">私の愛車たちを紹介します。</span>
+          <span class="cars-intro-copy" data-i18n="profile.carsIntro">私の愛車たちを紹介します。</span>
           <span class="flare-right" aria-hidden="true">
             <i></i><i></i>
           </span>
@@ -104,9 +115,9 @@
         <div class="hobby-split-left">
           <div class="hobby-title-row">
             <img src="image/icon_anime_clean.png" alt="アニメアイコン" class="hobby-icon-clapper" />
-            <h4 class="hobby-subtitle">アニメ</h4>
+            <h4 class="hobby-subtitle" data-i18n="profile.animeTitle">アニメ</h4>
           </div>
-          <p class="hobby-desc">
+          <p class="hobby-desc" data-i18n="profile.animeDesc">
             シュタゲ・コードギアス・犬夜叉…<br />
             挙げたらキリがありません<br />
             実はコスプレにも挑戦しています！
@@ -122,9 +133,9 @@
         <div class="hobby-split-left">
           <div class="hobby-title-row">
             <img src="image/icon_plane_clean.png" alt="飛行機アイコン" class="hobby-icon-plane" />
-            <h4 class="hobby-subtitle">海外旅行</h4>
+            <h4 class="hobby-subtitle" data-i18n="profile.travelTitle">海外旅行</h4>
           </div>
-          <p class="hobby-desc">
+          <p class="hobby-desc" data-i18n="profile.travelDesc">
             今はまだ14ヶ国ですが、<br />
             もっともっと色んな国の<br />
             美術館と美味しいご飯を<br />
@@ -139,16 +150,16 @@
       <!-- Bottom Effort Box (いま、頑張っていること) -->
       <div class="effort-box">
         <div class="effort-ribbon">
-          <span>いま、頑張っていること</span>
+          <span data-i18n="profile.effortTitle">いま、頑張っていること</span>
         </div>
         <ul class="effort-list">
           <li class="effort-item">
             <span class="check-box" aria-hidden="true"></span>
-            <span class="effort-text">フットワークをさらに軽くすること</span>
+            <span class="effort-text" data-i18n="profile.effort1">フットワークをさらに軽くすること</span>
           </li>
           <li class="effort-item">
             <span class="check-box" aria-hidden="true"></span>
-            <span class="effort-text">NISAの1,800万円の枠を埋めること</span>
+            <span class="effort-text" data-i18n="profile.effort2">NISAの1,800万円の枠を埋めること</span>
           </li>
         </ul>
       </div>
@@ -162,7 +173,7 @@
       <!-- Header -->
       <header class="activities-header">
         <img src="image/script_activities.png" alt="My Activities" class="script-activities-img" />
-        <h2 class="activities-ja">わたしの活動</h2>
+        <h2 class="activities-ja" data-i18n="profile.activitiesHeading">わたしの活動</h2>
         <span class="header-line"></span>
       </header>
 
@@ -173,15 +184,21 @@
           <div class="activity-text-side">
             <div class="activity-title-bar">
               <h3 class="activity-title">
-                <span class="slash-gold">/</span>オンライン秘書
+                <span class="slash-gold">/</span><span data-i18n="profile.act1Title">オンライン秘書</span>
               </h3>
             </div>
-            <p class="activity-desc">
+            <p class="activity-desc" data-i18n="profile.act1Desc">
               会社員として役員や代表の秘書を<br />
               経験後、フットワークの軽さと<br />
               マルチタスク・タスク管理の得意さ<br />
               を活かし、独立しました。
             </p>
+            <div class="activity-action-wrap">
+              <a href="../secretary/index.html#top" class="activity-detail-btn">
+                <span data-i18n="profile.detailBtn">詳細はこちら</span>
+                <span class="activity-detail-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
           <div class="activity-photo-side">
             <img src="image/act_secretary.png" alt="オンライン秘書" class="activity-slanted-img" />
@@ -193,10 +210,10 @@
           <div class="activity-text-side">
             <div class="activity-title-bar">
               <h3 class="activity-title">
-                <span class="slash-gold">/</span>金融業
+                <span class="slash-gold">/</span><span data-i18n="profile.act2Title">金融業</span>
               </h3>
             </div>
-            <p class="activity-desc">
+            <p class="activity-desc" data-i18n="profile.act2Desc">
               友人の死や、身内の闘病を目の<br />
               当たりにした経験をきっかけに、<br />
               お金や治療費の大切さを実感し、<br />
@@ -204,6 +221,12 @@
               始めました。日本の金融リテラシー<br />
               向上が必要だと考えています。
             </p>
+            <div class="activity-action-wrap">
+              <a href="../fp/index.html#top" class="activity-detail-btn">
+                <span data-i18n="profile.detailBtn">詳細はこちら</span>
+                <span class="activity-detail-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
           <div class="activity-photo-side">
             <img src="image/act_finance.png" alt="金融業" class="activity-slanted-img" />
@@ -215,15 +238,21 @@
           <div class="activity-text-side">
             <div class="activity-title-bar">
               <h3 class="activity-title">
-                <span class="slash-gold">/</span>子どもの金融教育<small class="title-sub">（一般社団法人）</small>
+                <span class="slash-gold">/</span><span data-i18n="profile.act3Title">子どもの金融教育</span><small class="title-sub" data-i18n="profile.act3Sub">（一般社団法人）</small>
               </h3>
             </div>
-            <p class="activity-desc">
+            <p class="activity-desc" data-i18n="profile.act3Desc">
               一般社団法人「子どもの未来と<br />
               お金の研究会」の発起人の一人として、<br />
               子どもたちの金融教育に<br />
               力を入れていきます。
             </p>
+            <div class="activity-action-wrap">
+              <a href="../../index.html?modal=association" class="activity-detail-btn">
+                <span data-i18n="profile.detailBtn">詳細はこちら</span>
+                <span class="activity-detail-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
           <div class="activity-photo-side">
             <img src="image/act_kids.png" alt="子どもの金融教育" class="activity-slanted-img" />
@@ -235,16 +264,22 @@
           <div class="activity-text-side">
             <div class="activity-title-bar">
               <h3 class="activity-title">
-                <span class="slash-gold">/</span>美容関係
+                <span class="slash-gold">/</span><span data-i18n="profile.act4Title">美容関係</span>
                 <img src="image/badge_new_clean.png" alt="NEW" class="new-badge-img" />
               </h3>
             </div>
-            <p class="activity-desc">
+            <p class="activity-desc" data-i18n="profile.act4Desc">
               新事業として、美容分野にも<br />
               取り組んでいます。安心・安全な<br />
               メイドインジャパンの業務用マシンの<br />
               開発と、海外への輸出を行います。
             </p>
+            <div class="activity-action-wrap">
+              <a href="https://nanaly.jp/" target="_blank" rel="noopener noreferrer" class="activity-detail-btn">
+                <span data-i18n="profile.detailBtn">詳細はこちら</span>
+                <span class="activity-detail-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
           <div class="activity-photo-side">
             <img src="image/act_beauty.png" alt="美容関係" class="activity-slanted-img" />
@@ -256,16 +291,22 @@
           <div class="activity-text-side">
             <div class="activity-title-bar">
               <h3 class="activity-title">
-                <span class="slash-gold">/</span>モデル活動<small class="title-sub">（フリー）</small>
+                <span class="slash-gold">/</span><span data-i18n="profile.act5Title">モデル活動</span><small class="title-sub" data-i18n="profile.act5Sub">（フリー）</small>
               </h3>
             </div>
-            <p class="activity-desc">
+            <p class="activity-desc" data-i18n="profile.act5Desc">
               フリーでモデル活動をしています。<br />
               着物や商品広告のモデルを<br />
               させていただくことがあり、<br />
               趣味の一つとして、<br />
               楽しく活動しています。
             </p>
+            <div class="activity-action-wrap">
+              <a href="../model/index.html#top" class="activity-detail-btn">
+                <span data-i18n="profile.detailBtn">詳細はこちら</span>
+                <span class="activity-detail-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
           <div class="activity-photo-side">
             <img src="image/act_model.png" alt="モデル活動" class="activity-slanted-img" />
@@ -279,10 +320,11 @@
   <footer class="bottom-top-nav">
     <a href="../../index.html" class="top-return-btn">
       <span class="top-return-arrow" aria-hidden="true">←</span>
-      <span class="top-return-text">TOPに戻る</span>
+      <span class="top-return-text" data-i18n="nav.backToTop">TOPに戻る</span>
     </a>
   </footer>
 
+  <script src="../../js/i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

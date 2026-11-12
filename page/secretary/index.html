@@ -9,14 +9,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../../css/lang-switcher.css" />
   <script>
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+    try {
+      var savedLang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nanaly_lang');
+      if (savedLang === 'en') document.documentElement.lang = 'en';
+    } catch (e) {}
   </script>
 </head>
-<body id="top">
+<body id="top" data-i18n-title="sec.pageTitle">
+  <div class="lang-switch-bar lang-switch-bar--sheet" role="region" aria-label="Language switcher">
+    <div class="lang-switch-pill">
+      <button type="button" class="lang-btn is-active" data-lang="ja" aria-pressed="true" aria-label="日本語">JP</button>
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+    </div>
+  </div>
   <main class="secretary-sheet">
     <!-- ==================== LEFT COLUMN: ONLINE SECRETARY ==================== -->
     <section class="col col-left">
@@ -34,12 +45,12 @@
       <!-- Hero Section -->
       <div class="sec-hero">
         <div class="sec-hero-text">
-          <h1 class="sec-main-title">
+          <h1 class="sec-main-title" data-i18n="sec.heroTitle">
             オンライン秘書<span class="title-particle">と</span><br />
             営業代行
           </h1>
           <img src="image/script_subtitle.png" alt="Online Secretary & Sales Support" class="script-subtitle-img" />
-          <p class="sec-hero-lead">
+          <p class="sec-hero-lead" data-i18n="sec.heroLead">
             日々の業務を整え、本来の仕事に<br />
             集中できる時間をつくります。
           </p>
@@ -53,31 +64,31 @@
       <div class="benefits-row">
         <div class="benefit-circle">
           <img src="image/icon_benefit_laptop.png" alt="業務効率化" class="benefit-icon" />
-          <span class="benefit-label">業務効率化</span>
+          <span class="benefit-label" data-i18n="sec.benefit1">業務効率化</span>
         </div>
         <div class="benefit-circle">
           <img src="image/icon_benefit_chart.png" alt="売上サポート" class="benefit-icon" />
-          <span class="benefit-label">売上サポート</span>
+          <span class="benefit-label" data-i18n="sec.benefit2">売上サポート</span>
         </div>
         <div class="benefit-circle">
           <img src="image/icon_benefit_clock.png" alt="時間の創出" class="benefit-icon" />
-          <span class="benefit-label">時間の創出</span>
+          <span class="benefit-label" data-i18n="sec.benefit3">時間の創出</span>
         </div>
       </div>
 
-      <!-- Section: / オンライン秘書 -->
+      <!-- Section: オンライン秘書 -->
       <div class="service-block">
-        <div class="section-slash-header">
-          <h2 class="slash-title"><span class="slash-gold">/</span>オンライン秘書</h2>
+        <div class="section-slash-header service-pillar-header">
+          <h2 class="slash-title slash-title-pillar" data-i18n="sec.pillar1Title">オンライン秘書</h2>
         </div>
 
-        <p class="service-intro">
+        <p class="service-intro" data-i18n="sec.pillar1Intro">
           事務・管理業務を幅広くサポートし、<br />
           業務の負担を軽減します。
         </p>
 
         <div class="sub-tag-bar">
-          <span class="sub-tag-pill">主な対応業務</span>
+          <span class="sub-tag-pill" data-i18n="sec.keyServices">主な対応業務</span>
           <span class="sub-tag-line"></span>
         </div>
 
@@ -85,30 +96,30 @@
           <ul class="task-col-list">
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">スケジュール管理・調整</span>
+              <span class="task-text" data-i18n="sec.task1_1">スケジュール管理・調整</span>
             </li>
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">メール対応・<br />問い合わせ管理</span>
+              <span class="task-text" data-i18n="sec.task1_2">メール対応・<br />問い合わせ管理</span>
             </li>
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">資料作成<br /><small class="task-note">（提案書・見積書・報告書）</small></span>
+              <span class="task-text" data-i18n="sec.task1_3">資料作成<br /><small class="task-note">（提案書・見積書・報告書）</small></span>
             </li>
           </ul>
 
           <ul class="task-col-list task-col-right">
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">会議・商談の準備・<br />議事録作成</span>
+              <span class="task-text" data-i18n="sec.task1_4">会議・商談の準備・<br />議事録作成</span>
             </li>
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">データ入力・整理</span>
+              <span class="task-text" data-i18n="sec.task1_5">データ入力・整理</span>
             </li>
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">その他、各種事務<br />サポート</span>
+              <span class="task-text" data-i18n="sec.task1_6">その他、各種事務<br />サポート</span>
             </li>
           </ul>
         </div>
@@ -117,33 +128,33 @@
       <!-- Section: / こんなご相談もお任せください -->
       <div class="consult-block">
         <div class="section-slash-header">
-          <h2 class="slash-title"><span class="slash-gold">/</span>こんなご相談もお任せください</h2>
+          <h2 class="slash-title"><span class="slash-gold">/</span><span data-i18n="sec.consultHeading">こんなご相談もお任せください</span></h2>
         </div>
 
         <div class="consult-grid">
           <div class="consult-card">
             <img src="image/icon_consult_chat.png" alt="客観的な意見" class="consult-icon" />
-            <p class="consult-text">客観的な<br />意見がほしい</p>
+            <p class="consult-text" data-i18n="sec.consult1">客観的な<br />意見がほしい</p>
           </div>
           <div class="consult-card">
             <img src="image/icon_consult_bulb.png" alt="新事業・運営企画" class="consult-icon" />
-            <p class="consult-text">新事業・運営企画の<br />アイデアがほしい</p>
+            <p class="consult-text" data-i18n="sec.consult2">新事業・運営企画の<br />アイデアがほしい</p>
           </div>
           <div class="consult-card">
             <img src="image/icon_consult_calc.png" alt="税務や保険" class="consult-icon" />
-            <p class="consult-text">税務や<br />保険について<br />相談したい</p>
+            <p class="consult-text" data-i18n="sec.consult3">税務や<br />保険について<br />相談したい</p>
           </div>
           <div class="consult-card">
             <img src="image/icon_consult_people.png" alt="福利厚生" class="consult-icon" />
-            <p class="consult-text">福利厚生を<br />見直したい</p>
+            <p class="consult-text" data-i18n="sec.consult4">福利厚生を<br />見直したい</p>
           </div>
           <div class="consult-card">
             <img src="image/icon_consult_pc.png" alt="ホームページやSNS" class="consult-icon" />
-            <p class="consult-text">ホームページや<br />SNSを整えたい</p>
+            <p class="consult-text" data-i18n="sec.consult5">ホームページや<br />SNSを整えたい</p>
           </div>
           <div class="consult-card">
             <img src="image/icon_consult_event.png" alt="イベント企画" class="consult-icon" />
-            <p class="consult-text consult-text-sm">忘年会、会食、<br />イベントの企画や<br />セッティングを<br />任せたい</p>
+            <p class="consult-text consult-text-sm" data-i18n="sec.consult6">忘年会、会食、<br />イベントの企画や<br />セッティングを<br />任せたい</p>
           </div>
         </div>
       </div>
@@ -151,13 +162,13 @@
       <!-- Section: / 手配もお任せを -->
       <div class="arrange-block">
         <div class="section-slash-header section-slash-inline">
-          <h2 class="slash-title"><span class="slash-gold">/</span>手配もお任せを</h2>
+          <h2 class="slash-title"><span class="slash-gold">/</span><span data-i18n="sec.arrangeHeading">手配もお任せを</span></h2>
           <span class="inline-header-line"></span>
         </div>
 
         <div class="arrange-lead-row">
           <img src="image/icon_plane.png" alt="飛行機" class="arrange-plane-icon" />
-          <p class="arrange-lead-text">
+          <p class="arrange-lead-text" data-i18n="sec.arrangeLead">
             出張、社員旅行、研修旅行の<br />
             企画と手配をします。
           </p>
@@ -165,7 +176,7 @@
 
         <div class="arrange-body">
           <div class="arrange-text-side">
-            <p class="arrange-desc">
+            <p class="arrange-desc" data-i18n="sec.arrangeDesc">
               旅行の計画を一から考える時間がない…<br />
               というお悩みもお任せください。国内・<br />
               海外を問わず、旅行先のリサーチから<br />
@@ -173,7 +184,7 @@
               旅程表の作成までトータルでサポートします。
             </p>
             <div class="arrange-navy-banner">
-              <p>
+              <p data-i18n="sec.arrangeBanner">
                 旅行会社に依頼するコストを、<br />
                 旅の充実に充てませんか？
               </p>
@@ -192,25 +203,19 @@
       <!-- Bottom-right diagonal decorative corner -->
       <div class="corner-decor corner-bottom-right-rightcol" aria-hidden="true"></div>
 
-      <!-- Column Top Brand Header -->
-      <header class="col-brand-header">
-        <p class="brand-en">NANALY</p>
-        <span class="brand-line"></span>
-      </header>
-
-      <!-- Section: / 営業代行 -->
+      <!-- Section: 営業代行 -->
       <div class="service-block sales-block">
-        <div class="section-slash-header">
-          <h2 class="slash-title slash-title-lg"><span class="slash-gold">/</span>営業代行</h2>
+        <div class="section-slash-header service-pillar-header">
+          <h2 class="slash-title slash-title-pillar" data-i18n="sec.pillar2Title">営業代行</h2>
         </div>
 
-        <p class="service-intro">
+        <p class="service-intro" data-i18n="sec.pillar2Intro">
           営業活動の一部またはすべてを代行し、<br />
           商談機会の創出・売上拡大を支援します。
         </p>
 
         <div class="sub-tag-bar">
-          <span class="sub-tag-pill">主な対応業務</span>
+          <span class="sub-tag-pill" data-i18n="sec.keyServices">主な対応業務</span>
           <span class="sub-tag-line"></span>
         </div>
 
@@ -218,30 +223,30 @@
           <ul class="task-col-list">
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">新規リストの作成・<br />アプローチ</span>
+              <span class="task-text" data-i18n="sec.task2_1">新規リストの作成・<br />アプローチ</span>
             </li>
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">アポイント獲得<br /><small class="task-note">（電話・メール・SNS）</small></span>
+              <span class="task-text" data-i18n="sec.task2_2">アポイント獲得<br /><small class="task-note">（電話・メール・SNS）</small></span>
             </li>
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">商談の事前ヒアリング・<br />ニーズ整理</span>
+              <span class="task-text" data-i18n="sec.task2_3">商談の事前ヒアリング・<br />ニーズ整理</span>
             </li>
           </ul>
 
           <ul class="task-col-list task-col-right">
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">提案資料の作成<br />サポート</span>
+              <span class="task-text" data-i18n="sec.task2_4">提案資料の作成<br />サポート</span>
             </li>
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">見込み顧客のフォロー・<br />管理（CRM）</span>
+              <span class="task-text" data-i18n="sec.task2_5">見込み顧客のフォロー・<br />管理（CRM）</span>
             </li>
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">営業活動のレポート・<br />分析</span>
+              <span class="task-text" data-i18n="sec.task2_6">営業活動のレポート・<br />分析</span>
             </li>
           </ul>
         </div>
@@ -250,34 +255,34 @@
       <!-- Section: / こんなお悩みはありませんか？ -->
       <div class="worries-block">
         <div class="section-slash-header">
-          <h2 class="slash-title"><span class="slash-gold">/</span>こんなお悩みはありませんか？</h2>
+          <h2 class="slash-title"><span class="slash-gold">/</span><span data-i18n="sec.worriesHeading">こんなお悩みはありませんか？</span></h2>
         </div>
 
         <div class="worries-content-wrap">
           <ul class="worries-list">
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">やることが多く、時間が足りない</span>
+              <span class="task-text" data-i18n="sec.worry1">やることが多く、時間が足りない</span>
             </li>
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">事務作業に追われて、<br />営業や企画に集中できない</span>
+              <span class="task-text" data-i18n="sec.worry2">事務作業に追われて、<br />営業や企画に集中できない</span>
             </li>
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">業務が属人化していて、<br />整理・効率化したい</span>
+              <span class="task-text" data-i18n="sec.worry3">業務が属人化していて、<br />整理・効率化したい</span>
             </li>
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">急に人が辞めて困っている</span>
+              <span class="task-text" data-i18n="sec.worry4">急に人が辞めて困っている</span>
             </li>
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">育休・産休の穴を埋めたい</span>
+              <span class="task-text" data-i18n="sec.worry5">育休・産休の穴を埋めたい</span>
             </li>
             <li class="task-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="task-text">一人で抱えず、信頼できる<br />サポートがほしい</span>
+              <span class="task-text" data-i18n="sec.worry6">一人で抱えず、信頼できる<br />サポートがほしい</span>
             </li>
           </ul>
 
@@ -290,7 +295,7 @@
       <!-- Section: / 料金プランについて -->
       <div class="pricing-block">
         <div class="section-slash-header section-slash-inline">
-          <h2 class="slash-title"><span class="slash-gold">/</span>料金プランについて</h2>
+          <h2 class="slash-title"><span class="slash-gold">/</span><span data-i18n="sec.pricingHeading">料金プランについて</span></h2>
           <span class="inline-header-line"></span>
         </div>
 
@@ -299,11 +304,11 @@
           <div class="pricing-card">
             <div class="pricing-top">
               <img src="image/icon_plan_light.png" alt="ライトプラン" class="pricing-icon" />
-              <h3 class="pricing-name">ライトプラン</h3>
+              <h3 class="pricing-name" data-i18n="sec.plan1Name">ライトプラン</h3>
             </div>
             <div class="pricing-divider"></div>
             <p class="pricing-price">
-              <small>月</small><span class="price-num">30,000</span><small>円〜</small>
+              <small data-i18n="sec.pricePrefix">月</small><span class="price-num">30,000</span><small data-i18n="sec.priceSuffix">円〜</small>
             </p>
           </div>
 
@@ -311,11 +316,11 @@
           <div class="pricing-card">
             <div class="pricing-top">
               <img src="image/icon_plan_std.png" alt="スタンダードプラン" class="pricing-icon" />
-              <h3 class="pricing-name pricing-name-tight">スタンダードプラン</h3>
+              <h3 class="pricing-name pricing-name-tight" data-i18n="sec.plan2Name">スタンダードプラン</h3>
             </div>
             <div class="pricing-divider"></div>
             <p class="pricing-price">
-              <small>月</small><span class="price-num">100,000</span><small>円〜</small>
+              <small data-i18n="sec.pricePrefix">月</small><span class="price-num">100,000</span><small data-i18n="sec.priceSuffix">円〜</small>
             </p>
           </div>
 
@@ -323,11 +328,11 @@
           <div class="pricing-card">
             <div class="pricing-top">
               <img src="image/icon_plan_prem.png" alt="プレミアプラン" class="pricing-icon" />
-              <h3 class="pricing-name">プレミアプラン</h3>
+              <h3 class="pricing-name" data-i18n="sec.plan3Name">プレミアプラン</h3>
             </div>
             <div class="pricing-divider"></div>
             <p class="pricing-price">
-              <small>月</small><span class="price-num">200,000</span><small>円〜</small>
+              <small data-i18n="sec.pricePrefix">月</small><span class="price-num">200,000</span><small data-i18n="sec.priceSuffix">円〜</small>
             </p>
           </div>
         </div>
@@ -336,7 +341,7 @@
         <div class="pricing-notes">
           <div class="pricing-note-card">
             <img src="image/icon_calendar.png" alt="契約形態" class="note-card-icon" />
-            <p class="note-card-text">
+            <p class="note-card-text" data-i18n="sec.note1">
               月収制、時給制、週給制、単発 など<br />
               ご希望に合わせて柔軟に対応いたします。
             </p>
@@ -344,7 +349,7 @@
 
           <div class="pricing-note-card">
             <img src="image/icon_handshake.png" alt="成功報酬制" class="note-card-icon" />
-            <p class="note-card-text note-card-text-lg">
+            <p class="note-card-text note-card-text-lg" data-i18n="sec.note2">
               また、営業代行に関しては<br />
               <strong>成功報酬制も可能</strong>です。
             </p>
@@ -363,10 +368,11 @@
   <footer class="bottom-top-nav">
     <a href="../../index.html" class="top-return-btn">
       <span class="top-return-arrow" aria-hidden="true">←</span>
-      <span class="top-return-text">TOPに戻る</span>
+      <span class="top-return-text" data-i18n="nav.backToTop">TOPに戻る</span>
     </a>
   </footer>
 
+  <script src="../../js/i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

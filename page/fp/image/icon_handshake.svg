@@ -1,0 +1,23 @@
+<svg viewBox="0 0 88 58" width="88" height="58" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left hand (palm reaching down-right, terminating in 3 scalloped clasped fingers) -->
+  <path d="M24 18.2 L35.5 14.5 C38.5 13.5 41.8 14.2 45.2 16.8 L60.2 28.2 C62.2 29.7 62.3 32.5 60.5 34.0 C59.1 35.2 57.3 35.1 55.7 33.9 C56.9 35.5 56.5 37.7 54.9 38.9 C53.5 40.0 51.5 39.9 49.9 38.6 C50.9 40.1 50.3 42.1 48.7 43.1 C47.1 44.1 44.9 43.7 43.3 42.2 L24 27.8 Z" fill="#f7f1e7" stroke="#8a6c42" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Interior finger creases on bottom-right fingers -->
+  <path d="M51 30.2 L55.7 33.9 M47 34.3 L49.9 38.6" stroke="#8a6c42" stroke-width="1.95" stroke-linecap="round"/>
+  <!-- Right hand (hooking over top from right with thumb resting over clasp) -->
+  <path d="M64 17.6 L52 14.2 C48 13.1 44.2 14.0 40.8 16.5 L31.6 23.0 C29.5 24.5 30.1 27.7 32.8 28.2 C35.1 28.6 37.5 27.3 40.8 24.8 L44.4 22.0 L59.6 31.8 C61.2 32.8 63.4 31.6 63.8 29.5 L64.5 25.0 Z" fill="#e8dcc8" stroke="#8a6c42" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Clasped fingertips tucked along bottom-left -->
+  <g fill="#f7f1e7" stroke="#8a6c42" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="26.0" y="29.4" width="8.0" height="4.4" rx="2.2" transform="rotate(-42 30.0 31.6)"/>
+    <rect x="30.0" y="32.9" width="8.4" height="4.4" rx="2.2" transform="rotate(-42 34.2 35.1)"/>
+    <rect x="34.2" y="36.2" width="8.2" height="4.4" rx="2.2" transform="rotate(-42 38.3 38.4)"/>
+    <rect x="38.6" y="39.0" width="7.2" height="4.2" rx="2.1" transform="rotate(-42 42.2 41.1)"/>
+  </g>
+  <!-- Left suit cuff -->
+  <path d="M9.5 20.5 L19.5 12.5 C20.8 11.5 22.6 11.8 23.4 13.2 L29.2 24.5 C29.9 25.8 29.4 27.4 28.1 28.3 L18.2 35.5 C16.9 36.4 15.1 36.0 14.3 34.6 L8.8 23.6 C8.1 22.3 8.4 21.3 9.5 20.5 Z" fill="#fcfbfa" stroke="#8a6c42" stroke-width="2.15" stroke-linejoin="round"/>
+  <circle cx="17.2" cy="30.2" r="1.25" fill="#c5a67c"/>
+  <!-- Right suit cuff -->
+  <path d="M78.5 20.5 L68.5 12.5 C67.2 11.5 65.4 11.8 64.6 13.2 L58.8 24.5 C58.1 25.8 58.6 27.4 59.9 28.3 L69.8 35.5 C71.1 36.4 72.9 36.0 73.7 34.6 L79.2 23.6 C79.9 22.3 79.6 21.3 78.5 20.5 Z" fill="#fcfbfa" stroke="#8a6c42" stroke-width="2.15" stroke-linejoin="round"/>
+  <circle cx="70.8" cy="30.2" r="1.25" fill="#c5a67c"/>
+  <!-- Subtle gold radiance lines below -->
+  <path d="M44 48.8 V53.5 M36.8 47.8 L34.6 52 M51.2 47.8 L53.4 52" stroke="#c5a67c" stroke-width="1.65" stroke-linecap="round"/>
+</svg>

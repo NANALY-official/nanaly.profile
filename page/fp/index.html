@@ -9,14 +9,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../../css/lang-switcher.css" />
   <script>
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+    try {
+      var savedLang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nanaly_lang');
+      if (savedLang === 'en') document.documentElement.lang = 'en';
+    } catch (e) {}
   </script>
 </head>
-<body id="top">
+<body id="top" data-i18n-title="fp.pageTitle">
+  <div class="lang-switch-bar lang-switch-bar--sheet" role="region" aria-label="Language switcher">
+    <div class="lang-switch-pill">
+      <button type="button" class="lang-btn is-active" data-lang="ja" aria-pressed="true" aria-label="日本語">JP</button>
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+    </div>
+  </div>
   <main class="fp-sheet">
     <!-- ==================== LEFT COLUMN: FP & INSURANCE ==================== -->
     <section class="col col-left">
@@ -32,13 +43,13 @@
           <p class="brand-en">N A N A L Y</p>
           <span class="brand-side-line"></span>
         </div>
-        <h1 class="main-title">FP・保険</h1>
+        <h1 class="main-title" data-i18n="fp.mainTitle">FP・保険</h1>
         <div class="script-fp-wrap">
           <img src="image/script_fp.png" alt="Financial Planning" class="script-fp-img" />
         </div>
         <div class="sub-banner-row">
           <span class="sub-side-line"></span>
-          <p class="sub-banner-text">保険の見直し・新規加入</p>
+          <p class="sub-banner-text" data-i18n="fp.subBanner">保険の見直し・新規加入</p>
           <span class="sub-side-line"></span>
         </div>
       </header>
@@ -51,14 +62,14 @@
       <!-- Question Copy with Gold Flare Lines -->
       <div class="question-block">
         <h2 class="question-title">
-          <span class="q-line-1">お金の守りと攻め、</span>
+          <span class="q-line-1" data-i18n="fp.qLine1">お金の守りと攻め、</span>
           <span class="q-line-2-wrap">
             <span class="flare-left" aria-hidden="true"><i></i><i></i></span>
-            <span class="q-line-2">出来てますか？</span>
+            <span class="q-line-2" data-i18n="fp.qLine2">出来てますか？</span>
             <span class="flare-right" aria-hidden="true"><i></i><i></i></span>
           </span>
         </h2>
-        <p class="lead-copy">
+        <p class="lead-copy" data-i18n="fp.leadCopy">
           お一人おひとりに合った<br />
           公的制度と保険の役割や、<br />
           NISAの役割を改めて整理します。
@@ -71,13 +82,13 @@
           <div class="kakesute-icon-wrap">
             <img src="image/icon_shield.png" alt="保険シールドアイコン" class="kakesute-icon" />
           </div>
-          <h3 class="kakesute-title">
+          <h3 class="kakesute-title" data-i18n="fp.kakesuteTitle">
             掛け捨てに<br />
             入りすぎていませんか？
           </h3>
         </div>
         <div class="kakesute-divider"></div>
-        <p class="kakesute-desc">
+        <p class="kakesute-desc" data-i18n="fp.kakesuteDesc">
           任意保険というものは、本来は<br />
           公的制度で守れない部分を、<br />
           必要最低限の保険料で補っていく<br />
@@ -89,28 +100,28 @@
       <div class="companies-section">
         <div class="companies-top-row">
           <span class="comp-side-line"></span>
-          <p class="companies-top-label">損害保険・生命保険合わせて</p>
+          <p class="companies-top-label" data-i18n="fp.companiesTop">損害保険・生命保険合わせて</p>
           <span class="comp-side-line"></span>
         </div>
 
         <div class="laurel-center-wrap">
-          <img src="image/icon_laurel_left.png" alt="" class="laurel-img laurel-left" aria-hidden="true" />
+          <img src="image/icon_laurel_left.svg" alt="" class="laurel-img laurel-left" aria-hidden="true" />
           <div class="companies-main-text">
             <p class="companies-num-row">
-              <span class="companies-num" data-count="44">44</span><span class="companies-unit">社の</span>
+              <span class="companies-num" data-count="44">44</span><span class="companies-unit" data-i18n="fp.companiesUnit">社の</span>
             </p>
-            <p class="companies-sub-label">保険会社を取り扱い</p>
+            <p class="companies-sub-label" data-i18n="fp.companiesSub">保険会社を取り扱い</p>
           </div>
-          <img src="image/icon_laurel_right.png" alt="" class="laurel-img laurel-right" aria-hidden="true" />
+          <img src="image/icon_laurel_right.svg" alt="" class="laurel-img laurel-right" aria-hidden="true" />
         </div>
 
         <div class="handshake-divider-row">
           <span class="hs-line"></span>
-          <img src="image/icon_handshake.png" alt="" class="handshake-icon" aria-hidden="true" />
+          <img src="image/icon_handshake.svg" alt="" class="handshake-icon" aria-hidden="true" />
           <span class="hs-line"></span>
         </div>
 
-        <p class="companies-lead">
+        <p class="companies-lead" data-i18n="fp.companiesLead">
           複数社を比較して、<br />
           お客様に合った保険をご提案します。
         </p>
@@ -122,16 +133,16 @@
           <div class="ins-arch-wrap">
             <img src="image/ins_damage.png" alt="損害保険（自動車・火災・賠償など）" class="ins-arch-img" />
           </div>
-          <h3 class="ins-type-title">損害保険</h3>
-          <p class="ins-type-sub">（自動車・火災・賠償など）</p>
+          <h3 class="ins-type-title" data-i18n="fp.insDamageTitle">損害保険</h3>
+          <p class="ins-type-sub" data-i18n="fp.insDamageSub">（自動車・火災・賠償など）</p>
         </div>
 
         <div class="ins-type-card">
           <div class="ins-arch-wrap">
             <img src="image/ins_life.png" alt="生命保険（医療・がん・死亡・資産形成など）" class="ins-arch-img" />
           </div>
-          <h3 class="ins-type-title">生命保険</h3>
-          <p class="ins-type-sub">
+          <h3 class="ins-type-title" data-i18n="fp.insLifeTitle">生命保険</h3>
+          <p class="ins-type-sub" data-i18n="fp.insLifeSub">
             （医療・がん・死亡・<br />
             資産形成 など）
           </p>
@@ -146,7 +157,7 @@
 
       <!-- Header -->
       <header class="support-header">
-        <h2 class="support-heading">
+        <h2 class="support-heading" data-i18n="fp.supportHeading">
           お金の“これから”を<br />
           トータルでサポート
         </h2>
@@ -162,9 +173,9 @@
           </div>
           <div class="support-text">
             <h3 class="support-title">
-              <span class="slash-gold" aria-hidden="true">/</span>NISA
+              <span class="slash-gold" aria-hidden="true">/</span><span data-i18n="fp.item1Title">NISA</span>
             </h3>
-            <p class="support-desc">
+            <p class="support-desc" data-i18n="fp.item1Desc">
               資産をコツコツ増やす<br />
               非課税の制度
             </p>
@@ -178,9 +189,9 @@
           </div>
           <div class="support-text">
             <h3 class="support-title">
-              <span class="slash-gold" aria-hidden="true">/</span>iDeCo
+              <span class="slash-gold" aria-hidden="true">/</span><span data-i18n="fp.item2Title">iDeCo</span>
             </h3>
-            <p class="support-desc">
+            <p class="support-desc" data-i18n="fp.item2Desc">
               老後資金を準備できる<br />
               個人型確定拠出年金
             </p>
@@ -194,9 +205,9 @@
           </div>
           <div class="support-text">
             <h3 class="support-title">
-              <span class="slash-gold" aria-hidden="true">/</span>DC<small class="title-sub">（企業型・個人型）</small>
+              <span class="slash-gold" aria-hidden="true">/</span><span data-i18n="fp.item3Title">DC</span><small class="title-sub" data-i18n="fp.item3Sub">（企業型・個人型）</small>
             </h3>
-            <p class="support-desc">
+            <p class="support-desc" data-i18n="fp.item3Desc">
               企業の福利厚生としても活用<br />
               できる確定拠出年金
             </p>
@@ -210,9 +221,9 @@
           </div>
           <div class="support-text">
             <h3 class="support-title">
-              <span class="slash-gold" aria-hidden="true">/</span>法人保険
+              <span class="slash-gold" aria-hidden="true">/</span><span data-i18n="fp.item4Title">法人保険</span>
             </h3>
-            <p class="support-desc">
+            <p class="support-desc" data-i18n="fp.item4Desc">
               事業のリスク対策・<br />
               役員の保障・退職金準備など
             </p>
@@ -226,9 +237,9 @@
           </div>
           <div class="support-text">
             <h3 class="support-title">
-              <span class="slash-gold" aria-hidden="true">/</span>ふるさと納税
+              <span class="slash-gold" aria-hidden="true">/</span><span data-i18n="fp.item5Title">ふるさと納税</span>
             </h3>
-            <p class="support-desc">
+            <p class="support-desc" data-i18n="fp.item5Desc">
               税の負担を抑えながら、<br />
               地域応援と特産品を楽しめる制度
             </p>
@@ -242,9 +253,9 @@
           </div>
           <div class="support-text">
             <h3 class="support-title">
-              <span class="slash-gold" aria-hidden="true">/</span>ライフプラン設計
+              <span class="slash-gold" aria-hidden="true">/</span><span data-i18n="fp.item6Title">ライフプラン設計</span>
             </h3>
-            <p class="support-desc">
+            <p class="support-desc" data-i18n="fp.item6Desc">
               教育・住宅・老後など、<br />
               人生の資金計画を整理
             </p>
@@ -257,7 +268,7 @@
         <div class="recommend-banner-row">
           <span class="rec-side-line"></span>
           <div class="recommend-ribbon">
-            <span>このような方におすすめ</span>
+            <span data-i18n="fp.recTitle">このような方におすすめ</span>
           </div>
           <span class="rec-side-line"></span>
         </div>
@@ -266,27 +277,27 @@
           <ul class="recommend-list">
             <li class="recommend-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="recommend-text">保険料を見直して、ムダを減らしたい</span>
+              <span class="recommend-text" data-i18n="fp.rec1">保険料を見直して、ムダを減らしたい</span>
             </li>
             <li class="recommend-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="recommend-text">将来の老後資金に備えたい</span>
+              <span class="recommend-text" data-i18n="fp.rec2">将来の老後資金に備えたい</span>
             </li>
             <li class="recommend-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="recommend-text">NISA・iDeCo・DCを活用したい</span>
+              <span class="recommend-text" data-i18n="fp.rec3">NISA・iDeCo・DCを活用したい</span>
             </li>
             <li class="recommend-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="recommend-text">法人の保障や事業の備えを整えたい</span>
+              <span class="recommend-text" data-i18n="fp.rec4">法人の保障や事業の備えを整えたい</span>
             </li>
             <li class="recommend-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="recommend-text">ふるさと納税を上手に活用したい</span>
+              <span class="recommend-text" data-i18n="fp.rec5">ふるさと納税を上手に活用したい</span>
             </li>
             <li class="recommend-item">
               <span class="check-box" aria-hidden="true"></span>
-              <span class="recommend-text">ライフプランを整理したい</span>
+              <span class="recommend-text" data-i18n="fp.rec6">ライフプランを整理したい</span>
             </li>
           </ul>
         </div>
@@ -303,10 +314,11 @@
   <footer class="bottom-top-nav">
     <a href="../../index.html" class="top-return-btn">
       <span class="top-return-arrow" aria-hidden="true">←</span>
-      <span class="top-return-text">TOPに戻る</span>
+      <span class="top-return-text" data-i18n="nav.backToTop">TOPに戻る</span>
     </a>
   </footer>
 
+  <script src="../../js/i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -9,15 +9,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../../css/lang-switcher.css" />
   <script>
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+    try {
+      var savedLang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('nanaly_lang');
+      if (savedLang === 'en') document.documentElement.lang = 'en';
+    } catch (e) {}
   </script>
 </head>
-<body id="top">
+<body id="top" data-i18n-title="pf.pageTitle">
   <div id="page-top" aria-hidden="true" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; pointer-events: none;"></div>
+  <div class="lang-switch-bar lang-switch-bar--sheet" role="region" aria-label="Language switcher">
+    <div class="lang-switch-pill">
+      <button type="button" class="lang-btn is-active" data-lang="ja" aria-pressed="true" aria-label="日本語">JP</button>
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+    </div>
+  </div>
   <!-- ==================== PHOTO PORTFOLIO SHEET (12 PHOTOGRAPHS INDEX) ==================== -->
   <main id="portfolio-section" class="portfolio-sheet" aria-label="PHOTO PORTFOLIO 撮影写真一覧">
     <div class="corner-decor pf-corner-top-left" aria-hidden="true"></div>
@@ -30,8 +41,8 @@
       <div class="pf-header-divider"></div>
       <div class="pf-subheader-row">
         <div class="pf-subheader-left">
-          <h2 class="pf-sub-ja">モデル活動 / 撮影写真一覧</h2>
-          <p class="pf-sub-lead">写真を選ぶと、大きな写真のページへ移動します。</p>
+          <h2 class="pf-sub-ja" data-i18n="pf.subJa">モデル活動 / 撮影写真一覧</h2>
+          <p class="pf-sub-lead" data-i18n="pf.subLead">写真を選ぶと、大きな写真のページへ移動します。</p>
         </div>
         <p class="pf-count-en">12 PHOTOGRAPHS</p>
       </div>
@@ -46,7 +57,7 @@
         </div>
         <div class="pf-caption">
           <span class="pf-num">01</span>
-          <span class="pf-name">和装ポートレート</span>
+          <span class="pf-name" data-i18n="pf.photo01">和装ポートレート</span>
         </div>
       </article>
 
@@ -57,7 +68,7 @@
         </div>
         <div class="pf-caption">
           <span class="pf-num">02</span>
-          <span class="pf-name">ブライダル・メイク</span>
+          <span class="pf-name" data-i18n="pf.photo02">ブライダル・メイク</span>
         </div>
       </article>
 
@@ -68,7 +79,7 @@
         </div>
         <div class="pf-caption">
           <span class="pf-num">03</span>
-          <span class="pf-name">浴衣ポートレート</span>
+          <span class="pf-name" data-i18n="pf.photo03">浴衣ポートレート</span>
         </div>
       </article>
 
@@ -79,7 +90,7 @@
         </div>
         <div class="pf-caption">
           <span class="pf-num">04</span>
-          <span class="pf-name">ライフスタイル</span>
+          <span class="pf-name" data-i18n="pf.photo04">ライフスタイル</span>
         </div>
       </article>
 
@@ -90,7 +101,7 @@
         </div>
         <div class="pf-caption">
           <span class="pf-num">05</span>
-          <span class="pf-name">アパレル・商品撮影</span>
+          <span class="pf-name" data-i18n="pf.photo05">アパレル・商品撮影</span>
         </div>
       </article>
 
@@ -101,7 +112,7 @@
         </div>
         <div class="pf-caption">
           <span class="pf-num">06</span>
-          <span class="pf-name">商品紹介ビジュアル</span>
+          <span class="pf-name" data-i18n="pf.photo06">商品紹介ビジュアル</span>
         </div>
       </article>
 
@@ -112,7 +123,7 @@
         </div>
         <div class="pf-caption">
           <span class="pf-num">07</span>
-          <span class="pf-name">商品着用シーン</span>
+          <span class="pf-name" data-i18n="pf.photo07">商品着用シーン</span>
         </div>
       </article>
 
@@ -123,7 +134,7 @@
         </div>
         <div class="pf-caption">
           <span class="pf-num">08</span>
-          <span class="pf-name">美容・サロン撮影</span>
+          <span class="pf-name" data-i18n="pf.photo08">美容・サロン撮影</span>
         </div>
       </article>
 
@@ -134,7 +145,7 @@
         </div>
         <div class="pf-caption">
           <span class="pf-num">09</span>
-          <span class="pf-name">カウンセリングシーン</span>
+          <span class="pf-name" data-i18n="pf.photo09">カウンセリングシーン</span>
         </div>
       </article>
 
@@ -145,7 +156,7 @@
         </div>
         <div class="pf-caption">
           <span class="pf-num">10</span>
-          <span class="pf-name">商品広告ビジュアル</span>
+          <span class="pf-name" data-i18n="pf.photo10">商品広告ビジュアル</span>
         </div>
       </article>
 
@@ -156,7 +167,7 @@
         </div>
         <div class="pf-caption">
           <span class="pf-num">11</span>
-          <span class="pf-name">商品カット・使用シーン</span>
+          <span class="pf-name" data-i18n="pf.photo11">商品カット・使用シーン</span>
         </div>
       </article>
 
@@ -167,7 +178,7 @@
         </div>
         <div class="pf-caption">
           <span class="pf-num">12</span>
-          <span class="pf-name">撮影のひとコマ</span>
+          <span class="pf-name" data-i18n="pf.photo12">撮影のひとコマ</span>
         </div>
       </article>
     </div>
@@ -207,9 +218,9 @@
       <!-- Bottom Navigation (前の写真 / 一覧へ戻る / 次の写真) -->
       <footer class="viewer-footer">
         <div class="viewer-nav-row">
-          <button type="button" id="viewer-prev" class="viewer-nav-btn viewer-prev-btn">前の写真</button>
-          <button type="button" id="viewer-back" class="viewer-back-btn">一覧へ戻る</button>
-          <button type="button" id="viewer-next" class="viewer-nav-btn viewer-next-btn">次の写真</button>
+          <button type="button" id="viewer-prev" class="viewer-nav-btn viewer-prev-btn" data-i18n="pf.prevBtn">前の写真</button>
+          <button type="button" id="viewer-back" class="viewer-back-btn" data-i18n="pf.backGridBtn">一覧へ戻る</button>
+          <button type="button" id="viewer-next" class="viewer-nav-btn viewer-next-btn" data-i18n="pf.nextBtn">次の写真</button>
         </div>
         <p class="viewer-footer-label">MODEL PORTFOLIO</p>
       </footer>
@@ -220,14 +231,15 @@
   <footer class="bottom-top-nav bottom-dual-nav">
     <a href="index.html#top" class="top-return-btn">
       <span class="top-return-arrow" aria-hidden="true">←</span>
-      <span class="top-return-text">モデル活動に戻る</span>
+      <span class="top-return-text" data-i18n="pf.backModelBtn">モデル活動に戻る</span>
     </a>
     <a href="../../index.html" class="top-return-btn">
       <span class="top-return-arrow" aria-hidden="true">←</span>
-      <span class="top-return-text">TOPに戻る</span>
+      <span class="top-return-text" data-i18n="nav.backToTop">TOPに戻る</span>
     </a>
   </footer>
 
+  <script src="../../js/i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
