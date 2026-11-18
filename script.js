@@ -264,7 +264,7 @@ const serviceDetails = {
   company: {
     title: '会社概要',
     category: 'COMPANY OVERVIEW',
-    icon: 'image/nanaly-logo.png',
+    icon: null,
     html: `
       <div class="company-modal-table">
         <div class="company-row">
@@ -311,7 +311,7 @@ const serviceDetailsEn = {
   company: {
     title: 'Company Overview',
     category: 'COMPANY PROFILE',
-    icon: 'image/nanaly-logo.png',
+    icon: null,
     html: `
       <div class="company-modal-table">
         <div class="company-row">
@@ -358,7 +358,15 @@ function initDetailModal() {
     if (!data) return;
 
     activeCategoryKey = categoryKey;
-    modalIcon.innerHTML = `<img src="${data.icon}" alt="${data.title}">`;
+    if (data.icon) {
+      modal.classList.remove('no-icon');
+      modalIcon.style.display = '';
+      modalIcon.innerHTML = `<img src="${data.icon}" alt="${data.title}">`;
+    } else {
+      modal.classList.add('no-icon');
+      modalIcon.style.display = 'none';
+      modalIcon.innerHTML = '';
+    }
     modalCategory.textContent = data.category;
     modalTitle.textContent = data.title;
     modalDesc.innerHTML = data.html;
@@ -377,7 +385,7 @@ function initDetailModal() {
   }
 
   function closeModal() {
-    modal.classList.remove('active');
+    modal.classList.remove('active', 'no-icon');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }

@@ -798,6 +798,15 @@ body {
   margin-bottom: 16px;
 }
 
+.modal-overlay.no-icon .modal-icon-wrapper {
+  display: none !important;
+}
+
+.modal-overlay.no-icon .modal-header {
+  gap: 0;
+  margin-bottom: 14px;
+}
+
 .modal-icon-wrapper {
   width: 58px;
   height: 58px;
