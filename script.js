@@ -260,6 +260,35 @@ const serviceDetails = {
         <li>賛助会員・サポーター企業様を募集しております</li>
       </ul>
     `
+  },
+  company: {
+    title: '会社概要',
+    category: 'COMPANY OVERVIEW',
+    icon: 'image/nanaly-logo.png',
+    html: `
+      <div class="company-modal-table">
+        <div class="company-row">
+          <span class="company-label">商号</span>
+          <span class="company-val">株式会社NANALY（ナナリー）</span>
+        </div>
+        <div class="company-row">
+          <span class="company-label">代表者</span>
+          <span class="company-val">代表取締役　山本 奈々</span>
+        </div>
+        <div class="company-row">
+          <span class="company-label">本社所在地</span>
+          <span class="company-val">福井県福井市</span>
+        </div>
+        <div class="company-row">
+          <span class="company-label">設立</span>
+          <span class="company-val">2026年10月1日</span>
+        </div>
+        <div class="company-row company-row--top">
+          <span class="company-label">事業内容</span>
+          <span class="company-val">美容機器の卸・販売、レンタル、メンテナンス、開発・OEM、化粧品販売、輸出入、ITソリューション等</span>
+        </div>
+      </div>
+    `
   }
 };
 
@@ -277,6 +306,35 @@ const serviceDetailsEn = {
         <li>Development of educational financial materials and games for kids</li>
         <li>Supporting members and corporate partners welcome</li>
       </ul>
+    `
+  },
+  company: {
+    title: 'Company Overview',
+    category: 'COMPANY PROFILE',
+    icon: 'image/nanaly-logo.png',
+    html: `
+      <div class="company-modal-table">
+        <div class="company-row">
+          <span class="company-label">Trade Name</span>
+          <span class="company-val">NANALY Inc. (株式会社NANALY)</span>
+        </div>
+        <div class="company-row">
+          <span class="company-label">Representative</span>
+          <span class="company-val">Nana Yamamoto, Representative Director</span>
+        </div>
+        <div class="company-row">
+          <span class="company-label">Headquarters</span>
+          <span class="company-val">Fukui City, Fukui Prefecture, Japan</span>
+        </div>
+        <div class="company-row">
+          <span class="company-label">Established</span>
+          <span class="company-val">October 1, 2026</span>
+        </div>
+        <div class="company-row company-row--top">
+          <span class="company-label">Business</span>
+          <span class="company-val">Wholesale, retail, rental, and maintenance of beauty devices; R&D and OEM development; cosmetics sales; import/export; IT solutions, etc.</span>
+        </div>
+      </div>
     `
   }
 };
@@ -414,6 +472,22 @@ function initDetailModal() {
       }
     });
   });
+
+  // 名刺内「会社概要」ボタンをクリック
+  const companyBtn = document.getElementById('open-company-btn');
+  if (companyBtn) {
+    companyBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openModal('company');
+    });
+    companyBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        openModal('company');
+      }
+    });
+  }
 
   // バナーカードをクリック
   const banner = document.querySelector('.banner-card');

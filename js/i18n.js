@@ -16,6 +16,7 @@
     'top.ownerEn': '山本 奈々',
     'top.company': 'NANALY Inc.',
     'top.jobTitle': 'Representative Director',
+    'top.companyBtn': 'Company Profile',
     'top.card.profile': 'Profile',
     'top.card.beauty': 'Beauty Devices',
     'top.card.beautySub': '<span>Dev &amp; Sales</span>',

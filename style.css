@@ -266,6 +266,65 @@ body {
   padding-left: 0.14em;
 }
 
+/* 名刺内「会社概要」ボタン */
+.card-company-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 11px;
+  padding: 4px 14px;
+  background: #ffffff;
+  border: 1px solid var(--color-gold);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 1px 4px rgba(197, 166, 124, 0.15);
+}
+
+.card-company-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(247, 242, 235, 1));
+  border-color: var(--color-gold-dark);
+  box-shadow: 0 3px 10px rgba(197, 166, 124, 0.28);
+  transform: translateY(-1px);
+}
+
+.card-company-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(197, 166, 124, 0.2);
+}
+
+.card-company-btn:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.company-btn-text {
+  font-family: var(--font-mincho);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--color-deep-teal);
+  letter-spacing: 0.1em;
+  padding-left: 0.1em;
+  transition: color 0.25s ease;
+}
+
+.company-btn-arrow {
+  font-size: 0.74rem;
+  color: var(--color-gold);
+  transition: transform 0.25s ease, color 0.25s ease;
+  line-height: 1;
+}
+
+.card-company-btn:hover .company-btn-text {
+  color: #0c333f;
+}
+
+.card-company-btn:hover .company-btn-arrow {
+  transform: translateX(2px);
+  color: var(--color-gold-dark);
+}
+
 /* ==========================================================================
    2. MENU 区切り線
    ========================================================================== */
@@ -817,6 +876,43 @@ body {
   top: 1px;
 }
 
+/* 会社概要モーダル テーブルレイアウト */
+.company-modal-table {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(197, 166, 124, 0.32);
+  margin-top: 2px;
+}
+
+.company-row {
+  display: flex;
+  align-items: baseline;
+  padding: 10px 4px;
+  border-bottom: 1px solid rgba(197, 166, 124, 0.22);
+  gap: 12px;
+}
+
+.company-row--top {
+  align-items: flex-start;
+}
+
+.company-label {
+  flex: 0 0 84px;
+  font-family: var(--font-mincho);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--color-deep-teal);
+  letter-spacing: 0.06em;
+}
+
+.company-val {
+  flex: 1;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #243a42;
+}
+
 .modal-footer {
   display: flex;
   gap: 12px;
@@ -1080,6 +1176,35 @@ body {
     white-space: nowrap;
   }
 
+  .card-company-btn {
+    margin-top: clamp(6px, 1.8vw, 9px);
+    padding: 3px 11px;
+  }
+
+  .company-btn-text {
+    font-size: clamp(0.66rem, 2.6vw, 0.72rem);
+    letter-spacing: 0.08em;
+  }
+
+  .company-btn-arrow {
+    font-size: clamp(0.62rem, 2.4vw, 0.68rem);
+  }
+
+  .company-row {
+    padding: 8px 2px;
+    gap: 8px;
+  }
+
+  .company-label {
+    flex: 0 0 74px;
+    font-size: 0.78rem;
+  }
+
+  .company-val {
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
   .menu-divider {
     margin: 0;
     gap: 12px;
@@ -1222,12 +1347,29 @@ html[lang="en"] .btn-label {
   letter-spacing: 0.02em;
 }
 
+html[lang="en"] .company-btn-text {
+  font-family: var(--font-serif-en);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+
+html[lang="en"] .company-label {
+  flex: 0 0 110px;
+  font-family: var(--font-serif-en);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
 html[lang="en"] .banner-title {
   white-space: normal;
   line-height: 1.25;
 }
 
 @media (max-width: 480px) {
+  html[lang="en"] .company-label {
+    flex: 0 0 92px;
+    font-size: 0.74rem;
+  }
   html[lang="en"] .owner-name {
     font-size: clamp(1.18rem, 4.9vw, 1.55rem);
     letter-spacing: 0.04em;
